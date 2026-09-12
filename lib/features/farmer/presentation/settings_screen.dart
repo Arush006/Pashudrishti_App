@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
+
+class AppSettings {
+  static String mapApiKey = '';
+}
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -34,21 +37,28 @@ class SettingsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     _buildSettingTile(
-                      icon: LucideIcons.bell,
+                      icon: Icons.map,
+                      title: 'Map API Key',
+                      subtitle: AppSettings.mapApiKey.isEmpty ? 'Add your map provider API key' : 'Configured',
+                      onTap: () => _showMapApiKeyDialog(context),
+                    ),
+                    const Divider(height: 1, color: Colors.black12),
+                    _buildSettingTile(
+                      icon: Icons.notifications,
                       title: 'Notifications',
                       subtitle: 'Manage alerts and reminders',
                       onTap: () => _showComingSoon(context),
                     ),
                     const Divider(height: 1, color: Colors.black12),
                     _buildSettingTile(
-                      icon: LucideIcons.sunMoon,
+                      icon: Icons.dark_mode,
                       title: 'Dark Mode / Light Mode',
                       subtitle: 'Switch app appearance',
                       onTap: () => _showComingSoon(context),
                     ),
                     const Divider(height: 1, color: Colors.black12),
                     _buildSettingTile(
-                      icon: LucideIcons.globe,
+                      icon: Icons.language,
                       title: 'Language',
                       subtitle: 'Change app language',
                       onTap: () => _showComingSoon(context),
@@ -105,9 +115,43 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(LucideIcons.chevronRight, color: Colors.black54, size: 18),
+            const Icon(Icons.chevron_right, color: Colors.black54, size: 18),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showMapApiKeyDialog(BuildContext context) {
+    final controller = TextEditingController(text: AppSettings.mapApiKey);
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Map API Key'),
+        content: TextField(
+          controller: controller,
+          decoration: const InputDecoration(
+            hintText: 'Enter your map API key',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              AppSettings.mapApiKey = controller.text.trim();
+              Navigator.of(dialogContext).pop();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Map API key saved.')),
+              );
+            },
+            child: const Text('Save'),
+          ),
+        ],
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
@@ -148,7 +147,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(LucideIcons.arrowLeft, color: Colors.black87),
+          icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => context.pop(),
         ),
       ),
@@ -167,18 +166,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 const SizedBox(height: 24),
                 TextField(
                   controller: _nameController,
-                  decoration: const InputDecoration(labelText: 'Full Name', prefixIcon: Icon(LucideIcons.user, color: Colors.black54)),
+                  decoration: const InputDecoration(labelText: 'Full Name', prefixIcon: Icon(Icons.person, color: Colors.black54)),
                 ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: _emailController,
-                  decoration: const InputDecoration(labelText: 'Email Address', prefixIcon: Icon(LucideIcons.mail, color: Colors.black54)),
+                  decoration: const InputDecoration(labelText: 'Email Address', prefixIcon: Icon(Icons.mail, color: Colors.black54)),
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: _phoneController,
-                  decoration: const InputDecoration(labelText: 'Phone Number', prefixIcon: Icon(LucideIcons.phone, color: Colors.black54)),
+                  decoration: const InputDecoration(labelText: 'Phone Number', prefixIcon: Icon(Icons.phone, color: Colors.black54)),
                   keyboardType: TextInputType.phone,
                 ),
                 const SizedBox(height: 16),
@@ -187,9 +186,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     labelText: 'Create Password',
-                    prefixIcon: const Icon(LucideIcons.lock, color: Colors.black54),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.black54),
                     suffixIcon: IconButton(
-                      icon: Icon(_obscurePassword ? LucideIcons.eye : LucideIcons.eyeOff, color: Colors.black54),
+                      icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off, color: Colors.black54),
                       onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                     ),
                   ),
@@ -200,9 +199,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   obscureText: _obscureConfirmPassword,
                   decoration: InputDecoration(
                     labelText: 'Re-enter Password',
-                    prefixIcon: const Icon(LucideIcons.lock, color: Colors.black54),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.black54),
                     suffixIcon: IconButton(
-                      icon: Icon(_obscureConfirmPassword ? LucideIcons.eye : LucideIcons.eyeOff, color: Colors.black54),
+                      icon: Icon(_obscureConfirmPassword ? Icons.visibility : Icons.visibility_off, color: Colors.black54),
                       onPressed: () => setState(() => _obscureConfirmPassword = !_obscureConfirmPassword),
                     ),
                   ),

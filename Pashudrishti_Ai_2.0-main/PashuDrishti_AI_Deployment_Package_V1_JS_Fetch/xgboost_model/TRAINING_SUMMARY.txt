@@ -1,0 +1,14 @@
+PashuDrishti XGBoost V1 — Full Training Run
+
+Training rows: 832
+Features: 45
+Disease classes: 167
+Animals: AI-Predictive Conditions (Cow/general), Buffalo, Bull, Cow, Goat, Horse, Ox, Pig, Sheep
+
+Training mode:
+Full available knowledge-derived dataset, one-time training.
+
+Important:
+This model is trained from knowledge-derived symptom cases. No clinical accuracy
+claim is made from training performance. The application should present predictions
+as AI-assisted possibilities and use the knowledge base/confirmation guidance.

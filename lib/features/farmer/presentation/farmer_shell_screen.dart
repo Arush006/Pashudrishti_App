@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
 import 'farmer_home_screen.dart';
@@ -51,11 +50,11 @@ class _FarmerShellScreenState extends State<FarmerShellScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(LucideIcons.home, 'Home', 0),
-                _buildNavItem(LucideIcons.clipboardList, 'Cases', 1),
-                _buildNavItem(LucideIcons.zap, 'AI Assistant', 2),
-                _buildNavItem(LucideIcons.plusSquare, 'Doctors', 3),
-                _buildNavItem(LucideIcons.user, 'Profile', 4),
+                _buildNavItem(Icons.home, 'Home', 0),
+                _buildNavItem(Icons.list_alt, 'Cases', 1),
+                _buildNavItem(Icons.flash_on, 'AI Assistant', 2),
+                _buildNavItem(Icons.add_circle_outline, 'Doctors', 3),
+                _buildNavItem(Icons.person, 'Profile', 4),
               ],
             ),
           ),

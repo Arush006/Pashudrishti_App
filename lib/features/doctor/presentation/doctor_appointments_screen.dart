@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../shared/widgets/glass_container.dart';
 
 class DoctorAppointmentsScreen extends StatelessWidget {
@@ -29,7 +28,7 @@ class DoctorAppointmentsScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Icon(LucideIcons.calendar, size: 64, color: Colors.black26),
+                      Icon(Icons.calendar_today, size: 64, color: Colors.black26),
                       SizedBox(height: 16),
                       Text(
                         'No upcoming appointments',

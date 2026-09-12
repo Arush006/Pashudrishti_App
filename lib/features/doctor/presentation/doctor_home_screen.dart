@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/providers/user_provider.dart';
 import '../../../core/services/api_service.dart';
@@ -87,10 +86,10 @@ class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
               mainAxisSpacing: 16,
               childAspectRatio: 1.2,
               children: [
-                _buildSummaryCard('Assigned Cases', _isLoading ? '...' : '${_dashboard['assignedCases'] ?? 0}', LucideIcons.user, Colors.blue),
-                _buildSummaryCard('Pending Cases', _isLoading ? '...' : '${_dashboard['pendingCases'] ?? 0}', LucideIcons.alertTriangle, Colors.orange),
-                _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '${_dashboard['resolvedCases'] ?? 0}', LucideIcons.calendar, Colors.purple),
-                _buildSummaryCard('Cure Rate', _isLoading ? '...' : '${_dashboard['cureRate'] ?? 0}%', LucideIcons.fileText, Colors.green),
+                _buildSummaryCard('Assigned Cases', _isLoading ? '...' : '${_dashboard['assignedCases'] ?? 0}', Icons.person, Colors.blue),
+                _buildSummaryCard('Pending Cases', _isLoading ? '...' : '${_dashboard['pendingCases'] ?? 0}', Icons.warning_amber_rounded, Colors.orange),
+                _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '${_dashboard['resolvedCases'] ?? 0}', Icons.calendar_today, Colors.purple),
+                _buildSummaryCard('Cure Rate', _isLoading ? '...' : '${_dashboard['cureRate'] ?? 0}%', Icons.insert_drive_file, Colors.green),
               ],
             ),
             const SizedBox(height: 24),
@@ -123,7 +122,7 @@ class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
               child: Center(
                 child: Column(
                   children: const [
-                    Icon(LucideIcons.inbox, size: 48, color: Colors.black26),
+                    Icon(Icons.inbox, size: 48, color: Colors.black26),
                     SizedBox(height: 16),
                     Text('No recent activities', style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600)),
                   ],

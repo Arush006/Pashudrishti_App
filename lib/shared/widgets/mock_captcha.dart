@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'glass_container.dart';
 
 class MockCaptcha extends StatefulWidget {
@@ -85,7 +84,7 @@ class _MockCaptchaState extends State<MockCaptcha> {
                 ),
               ),
               IconButton(
-                icon: const Icon(LucideIcons.refreshCw, color: Color(0xFF2563EB)),
+                icon: const Icon(Icons.refresh, color: Color(0xFF2563EB)),
                 onPressed: _generateCaptcha,
               ),
               Expanded(
@@ -96,7 +95,7 @@ class _MockCaptchaState extends State<MockCaptcha> {
                     hintText: 'Enter code',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     suffixIcon: _isCaptchaVerified
-                        ? const Icon(LucideIcons.checkCircle2, color: Colors.green)
+                        ? const Icon(Icons.check_circle, color: Colors.green)
                         : null,
                   ),
                 ),
