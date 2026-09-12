@@ -5,13 +5,52 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/widgets/glass_container.dart';
 import '../../../shared/widgets/case_summary_card.dart';
 import '../../../core/providers/user_provider.dart';
+import '../../../core/services/api_service.dart';
 
-class FarmerHomeScreen extends ConsumerWidget {
-  const FarmerHomeScreen({super.key});
+class FarmerHomeScreen extends ConsumerStatefulWidget {
+  final void Function(int index)? onNavigateToTab;
+
+  const FarmerHomeScreen({super.key, this.onNavigateToTab});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<FarmerHomeScreen> createState() => _FarmerHomeScreenState();
+}
+
+class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
+  bool _isLoading = true;
+  Map<String, dynamic> _dashboard = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDashboard();
+  }
+
+  Future<void> _loadDashboard() async {
+    final token = ref.read(userProvider).token;
+    if (token.isEmpty) {
+      setState(() => _isLoading = false);
+      return;
+    }
+
+    try {
+      final data = await ApiService.getUserDashboard(token);
+      setState(() {
+        _dashboard = data;
+        _isLoading = false;
+      });
+    } catch (_) {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final user = ref.watch(userProvider);
+    final totalCases = (_dashboard['totalCases'] ?? 0) as num;
+    final pendingCases = (_dashboard['pendingCases'] ?? 0) as num;
+    final resolvedCases = (_dashboard['resolvedCases'] ?? 0) as num;
+    final nearbyDoctors = ((_dashboard['nearbyDoctors'] as List?) ?? []).length;
     
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -27,22 +66,67 @@ class FarmerHomeScreen extends ConsumerWidget {
       ),
       drawer: Drawer(
         backgroundColor: const Color(0xFFF3F4F6),
-        child: ListView(
-          padding: EdgeInsets.zero,
+        child: Column(
           children: [
-            UserAccountsDrawerHeader(
-              decoration: const BoxDecoration(color: Color(0xFF2563EB)),
-              accountName: Text(user.fullName, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-              accountEmail: Text(user.email, style: const TextStyle(color: Colors.white70)),
-              currentAccountPicture: const CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(LucideIcons.user, color: Color(0xFF2563EB), size: 32),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  UserAccountsDrawerHeader(
+                    decoration: const BoxDecoration(color: Color(0xFF2563EB)),
+                    accountName: Text(user.fullName, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+                    accountEmail: Text(user.email, style: const TextStyle(color: Colors.white70)),
+                    currentAccountPicture: const CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Icon(LucideIcons.user, color: Color(0xFF2563EB), size: 32),
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(LucideIcons.settings, color: Colors.black87),
+                    title: const Text('Settings', style: TextStyle(color: Colors.black87)),
+                    onTap: () {
+                      context.push('/settings');
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
               ),
             ),
-            ListTile(leading: const Icon(LucideIcons.settings, color: Colors.black87), title: const Text('Settings', style: TextStyle(color: Colors.black87)), onTap: () {}),
-            ListTile(leading: const Icon(LucideIcons.moon, color: Colors.black87), title: const Text('Toggle Dark/Light Mode', style: TextStyle(color: Colors.black87)), onTap: () {}),
-            ListTile(leading: const Icon(LucideIcons.globe, color: Colors.black87), title: const Text('Change Language', style: TextStyle(color: Colors.black87)), onTap: () {}),
-            ListTile(leading: const Icon(LucideIcons.helpCircle, color: Colors.black87), title: const Text('Help & Support', style: TextStyle(color: Colors.black87)), onTap: () {}),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(
+                border: Border(top: BorderSide(color: Colors.black12)),
+                color: Colors.white,
+              ),
+              child: InkWell(
+                onTap: () {
+                  ref.read(userProvider.notifier).updateUser(
+                    fullName: 'Guest User',
+                    email: 'guest@example.com',
+                    phone: '',
+                    role: 'Livestock Owner',
+                  );
+                  context.go('/login');
+                },
+                borderRadius: BorderRadius.circular(12),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(LucideIcons.logOut, color: Colors.red, size: 22),
+                    SizedBox(width: 10),
+                    Text(
+                      'Log out',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -69,10 +153,10 @@ class FarmerHomeScreen extends ConsumerWidget {
               mainAxisSpacing: 16,
               childAspectRatio: 1.2,
               children: [
-                _buildSummaryCard('My Pets', '1', LucideIcons.heart, Colors.pink),
-                _buildSummaryCard('Pending Cases', '1', LucideIcons.fileText, Colors.yellow.shade800),
-                _buildSummaryCard('Consultations', '0', LucideIcons.activity, Colors.blue),
-                _buildSummaryCard('Nearby Doctors', '0', LucideIcons.user, Colors.purple),
+                _buildSummaryCard('My Pets', _isLoading ? '...' : '${totalCases}', LucideIcons.heart, Colors.pink),
+                _buildSummaryCard('Pending Cases', _isLoading ? '...' : '$pendingCases', LucideIcons.fileText, Colors.yellow.shade800),
+                _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '$resolvedCases', LucideIcons.activity, Colors.blue),
+                _buildSummaryCard('Nearby Doctors', _isLoading ? '...' : '$nearbyDoctors', LucideIcons.user, Colors.purple),
               ],
             ),
             const SizedBox(height: 24),
@@ -82,10 +166,12 @@ class FarmerHomeScreen extends ConsumerWidget {
                 scrollDirection: Axis.horizontal,
                 children: [
                   _buildQuickAction('+ Submit New Case', const Color(0xFF2563EB), Colors.white, () {
-                    context.push('/submit-case');
+                    widget.onNavigateToTab?.call(1);
                   }),
                   const SizedBox(width: 12),
-                  _buildQuickAction('Find Nearby Doctors', Colors.green, Colors.white, () {}),
+                  _buildQuickAction('Find Nearby Doctors', Colors.green, Colors.white, () {
+                    widget.onNavigateToTab?.call(3);
+                  }),
                   const SizedBox(width: 12),
                   _buildGlassQuickAction('Upload Report'),
                 ],

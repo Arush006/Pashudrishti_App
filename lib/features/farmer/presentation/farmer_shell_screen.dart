@@ -18,8 +18,14 @@ class FarmerShellScreen extends StatefulWidget {
 class _FarmerShellScreenState extends State<FarmerShellScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
-    const FarmerHomeScreen(),
+  void _navigateToTab(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  late final List<Widget> _screens = [
+    FarmerHomeScreen(onNavigateToTab: _navigateToTab),
     const FarmerCasesScreen(),
     const SubmitCaseScreen(),
     const FarmerDoctorsScreen(),

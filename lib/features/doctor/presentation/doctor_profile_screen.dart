@@ -8,6 +8,89 @@ import '../../../core/providers/user_provider.dart';
 class DoctorProfileScreen extends ConsumerWidget {
   const DoctorProfileScreen({super.key});
 
+  void _showEditDialog(BuildContext context, WidgetRef ref, UserModel user) {
+    final nameController = TextEditingController(text: user.fullName);
+    final emailController = TextEditingController(text: user.email);
+    final phoneController = TextEditingController(text: user.phone);
+    final roleController = TextEditingController(text: user.role);
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Edit Profile'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(labelText: 'Full Name'),
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(labelText: 'Email'),
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: phoneController,
+                  decoration: const InputDecoration(labelText: 'Phone'),
+                  keyboardType: TextInputType.phone,
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: roleController,
+                  decoration: const InputDecoration(labelText: 'Role'),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                final updatedName = nameController.text.trim();
+                final updatedEmail = emailController.text.trim();
+                final updatedPhone = phoneController.text.trim();
+                final updatedRole = roleController.text.trim();
+
+                if (updatedName.isEmpty || updatedEmail.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Name and email cannot be empty.'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  return;
+                }
+
+                ref.read(userProvider.notifier).updateUser(
+                  fullName: updatedName,
+                  email: updatedEmail,
+                  phone: updatedPhone,
+                  role: updatedRole.isEmpty ? 'Veterinarian' : updatedRole,
+                );
+
+                Navigator.of(dialogContext).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Profile updated successfully.'),
+                    backgroundColor: Color(0xFF2563EB),
+                  ),
+                );
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider);
@@ -44,7 +127,7 @@ class DoctorProfileScreen extends ConsumerWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () => _showEditDialog(context, ref, user),
                   borderRadius: BorderRadius.circular(20),
                   child: GlassContainer(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

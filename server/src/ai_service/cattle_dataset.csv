@@ -1,0 +1,258 @@
+image,fever,appetite,lesions,swelling,milk_change,lameness,discharge,behavior,disease
+Lumpuy/LSD_001sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_002.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_003.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_004sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_005sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_006sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_007sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_008sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_009sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_010sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_011sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_012sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Lumpuy/LSD_013sm.jpg,high,low,skin,yes,drop,no,yes,lethargic,LSD
+Malignant Catarrhal Fever/MCF_001sm.jpg,high,low,eye+mouth,yes,drop,no,yes,depressed,MCF
+Malignant Catarrhal Fever/MCF_002sm.jpg,high,low,eye+mouth,yes,drop,no,yes,depressed,MCF
+Malignant Catarrhal Fever/MCF_003sm.jpg,high,low,eye+mouth,yes,drop,no,yes,depressed,MCF
+Malignant Catarrhal Fever/MCF_004sm.jpg,high,low,eye+mouth,yes,drop,no,yes,depressed,MCF
+Malignant Catarrhal Fever/MCF_005sm.jpg,high,low,eye+mouth,yes,drop,no,yes,depressed,MCF
+Malignant Catarrhal Fever/MCF_006sm.jpg,high,low,eye+mouth,yes,drop,no,yes,depressed,MCF
+mastitis/001_30_IMG_gro174291-009-848x565.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/23.jpeg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/26.jpeg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/27.jpeg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/6.jpeg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/7.jpeg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/8.jpeg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Base-ringing-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Burnt-teat-e1515283231199-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Chemcial-burn-e1515283477137-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Chemcial-burn3-e1515283623745-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Chemcial-burn4-e1515283733588-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Chemical-burn-6-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Chemical-burn-7-e1515283936872-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Chemical-damage-e1515285856612-356x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Chlorine-pre-dip-used-at-4-parts-chlorine-1-part-waters-manure-solids-bedding-e1515285965121-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Creased-blue-teats-low-rest-phase-high-vacuumKE-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Drying-chemical-barrier-dip-build-up-build-up-e1515286053269.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Facial-eczma-on-teats-e1515294568304-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Hyperkeratosis-e1515371480240-332x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Isolated-keratin-1-1-e1515371116259-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Large-Ring-1-1-e1515371355481-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Large-Ring-1-2-e1515371563841-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Large-Ring-2-2-e1515371633565-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Large-Rough-Ring-1-2-e1515372034493-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/NMC-TCP-chemical-damage1-e1515281879220-400x284.jpeg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Papilloma-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Petechail-hemoraghing-e1515364651809-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture11-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture12-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture13-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture15-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture16-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture17-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture18-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture19-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture2-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture20-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture20-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture21-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture21-2-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture21-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture22-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture23-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture23-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture24-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture24-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture25-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture25-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture26-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture26-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture27-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture28-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture28-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture29-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture29-297x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture30-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture30-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture31-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture32-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture34-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture34-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture35-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture36-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture4-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture40-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture41-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture42-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture42-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture43-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture43-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture44-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture44-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture45-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture45-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture46-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture46-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture47-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture47-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture48-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture48-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture49-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture49-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture50-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture50-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture51-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture52-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture53-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture54-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Picture9-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Purple-Teats-with-wedging-overmilking-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Smooth-1-1-e1515372118683-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Smooth-2-1-e1515372198475-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Smooth-2-2-e1515372371349-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Very-Rough-2-1-e1515371869119-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/Very-Rough-2-2-e1515372540883-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/blue11-e1515364798164-1012x1024-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/blue12-e1515364823675-1024x790-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/chaps-2.1new-and-healed-390x284.png,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/chaps-3.1whole-teat.soiled-400x284.png,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/chaps-4.1scabbed-400x284.png,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/chaps-5.1.orifice-400x284.png,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/chaps-6.1.mouthpiece-400x284.png,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/chemical-burn2-e1515284193990-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin-2-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin-crack-6-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin-crack2-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin-crack3-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin-crack5-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin-crack7-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin-crack9-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin-eo5-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin5-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin7-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/dry-skin8-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/exfol1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/exfol2-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/exfol3-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/frostbite5_preview-e1515281757816-400x284.jpeg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp1-e1515373528892-940x1024-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp10-e1515373757796-1024x902-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp11-e1515373777349-1024x851-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp12-e1515373796893-1024x903-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp13-e1515373816135-1024x738-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp14-e1515373846770-1024x925-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp15-e1515373864506-1024x765-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp16-e1515373888406-1024x718-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp17-e1515373911728-1024x894-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp18-e1515373930791-1024x972-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp19-e1515373952298-1024x828-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp2-e1515373564252-729x1024-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp20-e1515373975164-1024x749-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp21-e1515374009194-1024x763-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp22-e1515374029867-1024x742-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp23-e1515374144420-1024x787-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp24-e1515374393597-1024x788-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp25-1024x683-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp3-e1515373586855-1024x864-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp4-e1515373603251-1024x688-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp5-e1515373631315-1024x893-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp6-e1515373652959-1024x855-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp7-e1515373678799-1024x799-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp8-e1515373705810-1024x765-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/hyp9-e1515373723171-1024x924-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/pet-hem2-e1515364540239-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/pet-hem3-e1515364562702-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/pox1-e1515354008404-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/pox2-e1515354088188-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/pox3-e1515354218443-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/pox4-e1515354347181-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/pox5-e1515354512661-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/pox6-e1515355158533-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/pseudo-pox1-e1515356634396-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/red10-e1515364965265-652x1024-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/red11-683x1024-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/red13-e1515365056736-735x1024-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/red14-e1515365078912-1024x756-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/red5-e1515364876519-839x1024-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/red7-e1515364900556-1024x843-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/red8-e1515364929848-1024x997-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/ring10-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/ring11-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/ring16-e1515291521268-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/ring2-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/ring4-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/ring6-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/ring7-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/severe-hemm3-e1515364758805-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/severe-hemm7-e1515364519265-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/severe-ringing-blue-teats-congestionKE-1-e1515364733512-1024x809-1-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/severe-ringing-blue-teats-congestionKE-e1515291895686-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/wet-teat2-1-e1515287241981-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/wet-teat2-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/wet-teat6-1-e1515287995479-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/wet-teat6-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal1-e1515368903681-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal12-e1515369630614-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal14-e1515369702798-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal15-e1515369788421-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal16-e1515369863835-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal17-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal18-e1515370070827-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal2-e1515369386480-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal4-e1515369489318-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+mastitis/normal5-e1515369559545-400x284.jpg,mild,slight,udder,yes,abnormal,no,no,pain,Mastitis
+Foot and mouth/mosap-73-_jpg.rf.1c629215c5764e8aa0141e4ffac1d5ac.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-74-_jpg.rf.e2a55c8563666038937b50d198d78e38.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-75-_jpg.rf.43f661ed996d8026e0c050d9c51fe0e9.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-76-_jpg.rf.094dc74292b0656a0a11ff7cba937396.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-77-_jpg.rf.7c645bf11d99767b0c99fa81352c4137.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-78-_jpg.rf.1f3a2b943b29d05c7cf627058db1f4d8.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-79-_jpg.rf.42ec91845be481f5cdebb16bf545acd0.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-8-_jpg.rf.35f5ca1f2417b27e4cfa67d5e9f12b03.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-80-_jpg.rf.120fa1e47e9184944a0905372d7f9ebb.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-81-_jpg.rf.b9ce34e5e2ed0cf331c67fff58cdda26.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-82-_jpg.rf.b9e653c88ef7fca37a332290c64b1de0.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-84-_jpg.rf.532e7fb88044dab552196b43ef58254c.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-85-_jpg.rf.f2cc00a67712e759f6dfa2d8021874fe.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-86-_jpg.rf.42b1a3db625512655d831d8627939fc4.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-87-_jpg.rf.ec217e134a7ef1a35106c28f80817977.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-88-_jpg.rf.b4bdcfb48dd74acbe3bd0bde1d9e66f2.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-89-_jpg.rf.c846277f82a4e2f0cc56872855b40dc2.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-90-_jpg.rf.084048b7c0c703da851b5f03b4d3b72a.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/mosap-92-_jpg.rf.edf744788665d6e58c2282ea707e4784.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigf 10d-1WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigf 10d-2WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigf 10d-3WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigf 10d-4WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigf 10d-5WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigf 10d-6WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigf 2d-1WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigf 4-5d-1WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigf10d-8WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigfoot2WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigm 0-1d-1WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigm 10d-1WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigm 10d-2WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigm 1-1 vWM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigm 2-3-4WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigm 2d-2WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigm 3-4d-1WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigm 3-4d-2WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/pigm 4-5d-1WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/small2dcow-1WM-1.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/smalltongueWM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/teats_4-5 daysWM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/teats_4-5_daysWM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/teats_healing occuredWM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/teats_unrupted 1dayWM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/tongue_2-3_days_WM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/tongue_3-4_days_WM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/tongue_3-4_daysWM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/tongue_4-5_days_WM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/tongue_4-5_daysWM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/tongue_4-5days.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD
+Foot and mouth/tongue-4-5_days_1WM.jpg,high,low,mouth+hoof,no,high_drop,yes,no,drooling,FMD

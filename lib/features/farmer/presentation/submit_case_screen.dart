@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
+import '../../../core/providers/user_provider.dart';
+import '../../../core/services/api_service.dart';
 
-class SubmitCaseScreen extends StatefulWidget {
+class SubmitCaseScreen extends ConsumerStatefulWidget {
   const SubmitCaseScreen({super.key});
 
   @override
-  State<SubmitCaseScreen> createState() => _SubmitCaseScreenState();
+  ConsumerState<SubmitCaseScreen> createState() => _SubmitCaseScreenState();
 }
 
-class _SubmitCaseScreenState extends State<SubmitCaseScreen> {
+class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
   final _breedController = TextEditingController();
   final _ageController = TextEditingController();
   final _weightController = TextEditingController();
@@ -75,17 +78,45 @@ class _SubmitCaseScreenState extends State<SubmitCaseScreen> {
   }
 
   void _submit() async {
+    final token = ref.read(userProvider).token;
+    if (token.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please login first'), backgroundColor: Colors.redAccent),
+      );
+      return;
+    }
+
     setState(() => _isLoading = true);
-    
-    await Future.delayed(const Duration(seconds: 2));
-    
-    if (mounted) {
+
+    try {
+      final payload = {
+        'animalType': _animalType,
+        'breed': _breedController.text.trim(),
+        'age': _ageController.text.trim(),
+        'weight': _weightController.text.trim(),
+        'location': _locationController.text.trim(),
+        'fever': _fever,
+        'appetite': _appetite,
+        'lesions': _lesions,
+        'notes': _notesController.text.trim(),
+        'imageUrl': '',
+        'aiAnalysis': {'disease_name': 'Pending Review'},
+      };
+
+      await ApiService.submitCase(token, payload);
+
+      if (!mounted) return;
       setState(() => _isLoading = false);
       _clearForm();
-      
-      final messenger = ScaffoldMessenger.of(context);
-      messenger.showSnackBar(
+
+      ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('AI Diagnostic Complete - Case sent to Doctor'), backgroundColor: Colors.green),
+      );
+    } catch (error) {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(error.toString().replaceFirst('Exception: ', '')), backgroundColor: Colors.redAccent),
       );
     }
   }

@@ -6,6 +6,7 @@ import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
 import '../../../shared/widgets/mock_captcha.dart';
 import '../../../core/providers/user_provider.dart';
+import '../../../core/services/api_service.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
@@ -24,6 +25,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   bool _obscureConfirmPassword = true;
   String _accountType = 'Livestock Owner';
   bool _isCaptchaVerified = false;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -49,26 +51,49 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       return;
     }
     
-    // Save to provider
-    ref.read(userProvider.notifier).updateUser(
-      fullName: _nameController.text.isNotEmpty ? _nameController.text : 'Raju Kumar',
-      email: _emailController.text.isNotEmpty ? _emailController.text : 'raju@example.com',
-      phone: _phoneController.text,
-      role: _accountType,
-    );
-    
-    FocusScope.of(context).unfocus();
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Registration successful!'), backgroundColor: Colors.green),
-    );
-    await Future.delayed(const Duration(milliseconds: 600));
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    if (context.canPop()) {
-      context.pop();
-    } else {
-      context.go('/login');
+    setState(() => _isLoading = true);
+
+    try {
+      final response = await ApiService.register(
+        name: _nameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+        role: _accountType,
+        phone: _phoneController.text,
+      );
+
+      final userData = response['user'] as Map<String, dynamic>? ?? {};
+      final token = response['token']?.toString() ?? '';
+      final role = ApiService.roleForUi(userData['role']?.toString());
+
+      ref.read(userProvider.notifier).updateUser(
+        fullName: userData['name']?.toString() ?? _nameController.text,
+        email: userData['email']?.toString() ?? _emailController.text,
+        phone: _phoneController.text,
+        role: role,
+        token: token,
+      );
+
+      FocusScope.of(context).unfocus();
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Registration successful!'), backgroundColor: Colors.green),
+      );
+      await Future.delayed(const Duration(milliseconds: 600));
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      if (context.canPop()) {
+        context.pop();
+      } else {
+        context.go('/login');
+      }
+    } catch (error) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(error.toString().replaceFirst('Exception: ', '')), backgroundColor: Colors.redAccent),
+      );
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 
@@ -192,8 +217,14 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 ),
                 const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: _handleRegister,
-                  child: const Text('Register', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  onPressed: _isLoading ? null : _handleRegister,
+                  child: _isLoading
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                        )
+                      : const Text('Register', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),

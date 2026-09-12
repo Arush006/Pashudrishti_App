@@ -1,16 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../../core/providers/user_provider.dart';
+import '../../../core/services/api_service.dart';
 import '../../../shared/widgets/glass_container.dart';
 import '../../../shared/widgets/doctor_case_card.dart';
 
-class DoctorCasesScreen extends StatelessWidget {
+class DoctorCasesScreen extends ConsumerStatefulWidget {
   const DoctorCasesScreen({super.key});
+
+  @override
+  ConsumerState<DoctorCasesScreen> createState() => _DoctorCasesScreenState();
+}
+
+class _DoctorCasesScreenState extends ConsumerState<DoctorCasesScreen> {
+  bool _isLoading = true;
+  List<dynamic> _cases = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCases();
+  }
+
+  Future<void> _loadCases() async {
+    final token = ref.read(userProvider).token;
+    if (token.isEmpty) {
+      setState(() => _isLoading = false);
+      return;
+    }
+
+    try {
+      final cases = await ApiService.getDoctorCases(token);
+      setState(() {
+        _cases = cases;
+        _isLoading = false;
+      });
+    } catch (_) {
+      setState(() => _isLoading = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 120), // 120px bottom padding to clear nav bar
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -53,25 +88,22 @@ class DoctorCasesScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Expanded(
-              child: ListView.builder(
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  final cases = [
-                    {'id': '#102', 'name': 'Raju Kumar', 'animal': 'Cattle', 'severity': 'High'},
-                    {'id': '#103', 'name': 'Anita Devi', 'animal': 'Buffalo', 'severity': 'Medium'},
-                    {'id': '#104', 'name': 'Surya Singh', 'animal': 'Goat', 'severity': 'Low'},
-                    {'id': '#105', 'name': 'Vikram Patel', 'animal': 'Sheep', 'severity': 'High'},
-                  ];
-                  return DoctorCaseCard(
-                    caseId: cases[index]['id']!,
-                    date: 'Jun ${19 - index}, 2026',
-                    patientName: cases[index]['name']!,
-                    animal: cases[index]['animal']!,
-                    status: index < 2 ? 'Pending Review' : 'In Progress',
-                    severity: cases[index]['severity']!,
-                  );
-                },
-              ),
+              child: _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : ListView.builder(
+                      itemCount: _cases.length,
+                      itemBuilder: (context, index) {
+                        final item = _cases[index] as Map<String, dynamic>;
+                        return DoctorCaseCard(
+                          caseId: '#${item['id'] ?? 0}',
+                          date: (item['created_at'] ?? '').toString().split('T').first,
+                          patientName: item['user_name'] ?? 'Unknown Patient',
+                          animal: item['animal_type'] ?? 'Animal',
+                          status: item['status'] ?? 'Pending',
+                          severity: item['disease_name'] ?? 'N/A',
+                        );
+                      },
+                    ),
             ),
             const SizedBox(height: 16),
             Row(
@@ -80,9 +112,9 @@ class DoctorCasesScreen extends StatelessWidget {
                   child: GlassContainer(
                     padding: const EdgeInsets.all(16),
                     child: Column(
-                      children: const [
-                        Text('4', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue)),
-                        Text('Total Cases', style: TextStyle(color: Colors.black54, fontSize: 12)),
+                      children: [
+                        Text('${_cases.length}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue)),
+                        const Text('Total Cases', style: TextStyle(color: Colors.black54, fontSize: 12)),
                       ],
                     ),
                   ),
@@ -92,9 +124,9 @@ class DoctorCasesScreen extends StatelessWidget {
                   child: GlassContainer(
                     padding: const EdgeInsets.all(16),
                     child: Column(
-                      children: const [
-                        Text('2', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.orange)),
-                        Text('In Progress', style: TextStyle(color: Colors.black54, fontSize: 12)),
+                      children: [
+                        Text('${_cases.where((c) => (c as Map<String, dynamic>)['status'] == 'in_progress').length}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.orange)),
+                        const Text('In Progress', style: TextStyle(color: Colors.black54, fontSize: 12)),
                       ],
                     ),
                   ),

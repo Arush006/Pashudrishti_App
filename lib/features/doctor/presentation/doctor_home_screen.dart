@@ -1,10 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/providers/user_provider.dart';
+import '../../../core/services/api_service.dart';
 import '../../../shared/widgets/glass_container.dart';
 
-class DoctorHomeScreen extends StatelessWidget {
+class DoctorHomeScreen extends ConsumerStatefulWidget {
   const DoctorHomeScreen({super.key});
+
+  @override
+  ConsumerState<DoctorHomeScreen> createState() => _DoctorHomeScreenState();
+}
+
+class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
+  bool _isLoading = true;
+  Map<String, dynamic> _dashboard = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDashboard();
+  }
+
+  Future<void> _loadDashboard() async {
+    final token = ref.read(userProvider).token;
+    if (token.isEmpty) {
+      setState(() => _isLoading = false);
+      return;
+    }
+
+    try {
+      final data = await ApiService.getDoctorDashboard(token);
+      setState(() {
+        _dashboard = data;
+        _isLoading = false;
+      });
+    } catch (_) {
+      setState(() => _isLoading = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +49,34 @@ class DoctorHomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Welcome back, Doctor!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'Here\'s your performance summary for this week',
-              style: TextStyle(color: Colors.white70),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: const Color(0xFF2563EB),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF2563EB).withValues(alpha: 0.25),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Welcome back, Doctor!',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Here\'s your performance summary for this week',
+                    style: TextStyle(color: Colors.white70),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 24),
             GridView.count(
@@ -32,23 +87,27 @@ class DoctorHomeScreen extends StatelessWidget {
               mainAxisSpacing: 16,
               childAspectRatio: 1.2,
               children: [
-                _buildSummaryCard('Total Patients', '0', LucideIcons.user, Colors.blue),
-                _buildSummaryCard('Active Cases', '0', LucideIcons.alertTriangle, Colors.orange),
-                _buildSummaryCard('Appointments', '0', LucideIcons.calendar, Colors.purple),
-                _buildSummaryCard('Reports Filed', '0', LucideIcons.fileText, Colors.green),
+                _buildSummaryCard('Assigned Cases', _isLoading ? '...' : '${_dashboard['assignedCases'] ?? 0}', LucideIcons.user, Colors.blue),
+                _buildSummaryCard('Pending Cases', _isLoading ? '...' : '${_dashboard['pendingCases'] ?? 0}', LucideIcons.alertTriangle, Colors.orange),
+                _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '${_dashboard['resolvedCases'] ?? 0}', LucideIcons.calendar, Colors.purple),
+                _buildSummaryCard('Cure Rate', _isLoading ? '...' : '${_dashboard['cureRate'] ?? 0}%', LucideIcons.fileText, Colors.green),
               ],
             ),
             const SizedBox(height: 24),
             SizedBox(
-              height: 60,
+              height: 48,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  _buildActionCard('View Cases', const Color(0xFF2563EB), () {}),
+                  _buildQuickAction('View Cases', const Color(0xFF2563EB), Colors.white, () {
+                    context.push('/doctor-cases');
+                  }),
                   const SizedBox(width: 12),
-                  _buildActionCard('Appointments', Colors.purple, () {}),
+                  _buildQuickAction('Appointments', Colors.purple, Colors.white, () {
+                    context.push('/doctor-appointments');
+                  }),
                   const SizedBox(width: 12),
-                  _buildActionCard('Reports', Colors.green, () {
+                  _buildQuickAction('Reports', Colors.green, Colors.white, () {
                     context.push('/doctor-reports');
                   }),
                 ],
@@ -94,21 +153,20 @@ class DoctorHomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildActionCard(String title, Color fillColor, VoidCallback onTap) {
+  Widget _buildQuickAction(String title, Color bgColor, Color textColor, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: GlassContainer(
-        padding: EdgeInsets.zero,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(
-            color: fillColor,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          alignment: Alignment.center,
-          child: Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+      borderRadius: BorderRadius.circular(24),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          title,
+          style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
         ),
       ),
     );
