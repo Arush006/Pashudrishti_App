@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
@@ -84,7 +83,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(LucideIcons.leaf, size: 64, color: Color(0xFF2563EB)),
+                  const Icon(Icons.eco, size: 64, color: Color(0xFF2563EB)),
                   const SizedBox(height: 16),
                   const Text(
                     'Pashudrishti',
@@ -97,7 +96,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     controller: _emailController,
                     decoration: const InputDecoration(
                       labelText: 'Email Address',
-                      prefixIcon: Icon(LucideIcons.mail, color: Colors.black54),
+                      prefixIcon: Icon(Icons.mail, color: Colors.black54),
                     ),
                     keyboardType: TextInputType.emailAddress,
                   ),
@@ -107,10 +106,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      prefixIcon: const Icon(LucideIcons.lock, color: Colors.black54),
+                      prefixIcon: const Icon(Icons.lock, color: Colors.black54),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscurePassword ? LucideIcons.eye : LucideIcons.eyeOff,
+                          _obscurePassword ? Icons.visibility : Icons.visibility_off,
                           color: Colors.black54,
                         ),
                         onPressed: () {

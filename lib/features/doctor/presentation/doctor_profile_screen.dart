@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/widgets/glass_container.dart';
@@ -177,13 +176,13 @@ class DoctorProfileScreen extends ConsumerWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SizedBox(width: 100, child: _buildStatCard(LucideIcons.star, 'Ratings', '0', Colors.orange)),
+                  SizedBox(width: 100, child: _buildStatCard(Icons.star, 'Ratings', '0', Colors.orange)),
                   const SizedBox(width: 8),
-                  SizedBox(width: 100, child: _buildStatCard(LucideIcons.activity, 'Cases Handled', '0', Colors.blue)),
+                  SizedBox(width: 100, child: _buildStatCard(Icons.monitor_heart, 'Cases Handled', '0', Colors.blue)),
                   const SizedBox(width: 8),
-                  SizedBox(width: 100, child: _buildStatCard(LucideIcons.award, 'Success Rate', '0%', Colors.green)),
+                  SizedBox(width: 100, child: _buildStatCard(Icons.emoji_events, 'Success Rate', '0%', Colors.green)),
                   const SizedBox(width: 8),
-                  SizedBox(width: 100, child: _buildStatCard(LucideIcons.briefcase, 'Experience', '0 Years', Colors.purple)),
+                  SizedBox(width: 100, child: _buildStatCard(Icons.work, 'Experience', '0 Years', Colors.purple)),
                 ],
               ),
             ),
@@ -197,13 +196,13 @@ class DoctorProfileScreen extends ConsumerWidget {
                 children: [
                   const Text('Professional Details', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
                   const SizedBox(height: 16),
-                  _buildDetailRow(LucideIcons.mail, email),
+                  _buildDetailRow(Icons.mail, email),
                   const SizedBox(height: 12),
-                  _buildDetailRow(LucideIcons.phone, phone),
+                  _buildDetailRow(Icons.phone, phone),
                   const SizedBox(height: 12),
-                  _buildDetailRow(LucideIcons.mapPin, 'Indore, MP'),
+                  _buildDetailRow(Icons.location_on, 'Indore, MP'),
                   const SizedBox(height: 12),
-                  _buildDetailRow(LucideIcons.hash, 'VET-89321'),
+                  _buildDetailRow(Icons.tag, 'VET-89321'),
                   const SizedBox(height: 16),
                   const Text('About You', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87)),
                   const SizedBox(height: 8),

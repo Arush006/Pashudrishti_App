@@ -1,0 +1,7 @@
+# XGBoost model runtime (if XGBoost is served from Python)
+xgboost
+scikit-learn
+numpy
+
+# ResNet inference is called from JavaScript fetch.
+# No Roboflow Python SDK is required for ResNet.

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
 import 'doctor_home_screen.dart';
@@ -46,7 +45,7 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(LucideIcons.menu, color: Colors.white),
+            icon: const Icon(Icons.menu, color: Colors.white),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
@@ -65,11 +64,11 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
                     accountEmail: Text('doctor@example.com', style: TextStyle(color: Colors.white70)),
                     currentAccountPicture: CircleAvatar(
                       backgroundColor: Colors.white,
-                      child: Icon(LucideIcons.user, color: Color(0xFF2563EB), size: 32),
+                      child: Icon(Icons.person, color: Color(0xFF2563EB), size: 32),
                     ),
                   ),
                   ListTile(
-                    leading: const Icon(LucideIcons.settings, color: Colors.black87),
+                    leading: const Icon(Icons.settings, color: Colors.black87),
                     title: const Text('Settings', style: TextStyle(color: Colors.black87)),
                     onTap: () {
                       context.push('/settings');
@@ -94,7 +93,7 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(LucideIcons.logOut, color: Colors.red, size: 22),
+                    Icon(Icons.logout, color: Colors.red, size: 22),
                     SizedBox(width: 10),
                     Text(
                       'Log out',
@@ -126,11 +125,11 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(LucideIcons.home, 'Home', 0),
-                _buildNavItem(LucideIcons.clipboardList, 'Cases', 1),
-                _buildNavItem(LucideIcons.calendar, 'Appointments', 2),
-                _buildNavItem(LucideIcons.fileText, 'Reports', 3),
-                _buildNavItem(LucideIcons.user, 'Profile', 4),
+                _buildNavItem(Icons.home, 'Home', 0),
+                _buildNavItem(Icons.list_alt, 'Cases', 1),
+                _buildNavItem(Icons.calendar_today, 'Appointments', 2),
+                _buildNavItem(Icons.insert_drive_file, 'Reports', 3),
+                _buildNavItem(Icons.person, 'Profile', 4),
               ],
             ),
           ),

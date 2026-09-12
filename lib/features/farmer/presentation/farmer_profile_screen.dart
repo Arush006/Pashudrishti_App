@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/widgets/glass_container.dart';
@@ -134,7 +133,7 @@ class FarmerProfileScreen extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: const Row(
                       children: [
-                        Icon(LucideIcons.edit2, size: 16, color: Color(0xFF2563EB)),
+                        Icon(Icons.edit, size: 16, color: Color(0xFF2563EB)),
                         SizedBox(width: 8),
                         Text('Edit', style: TextStyle(color: Color(0xFF2563EB), fontWeight: FontWeight.bold)),
                       ],
@@ -178,12 +177,12 @@ class FarmerProfileScreen extends ConsumerWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: _buildContactCol(LucideIcons.mail, 'Email', email),
+                    child: _buildContactCol(Icons.mail, 'Email', email),
                   ),
                   Container(width: 1, height: 40, color: Colors.black12),
                   const SizedBox(width: 16),
                   Expanded(
-                    child: _buildContactCol(LucideIcons.phone, 'Phone', phone),
+                    child: _buildContactCol(Icons.phone, 'Phone', phone),
                   ),
                 ],
               ),
@@ -199,17 +198,17 @@ class FarmerProfileScreen extends ConsumerWidget {
                 children: [
                   Row(
                     children: [
-                      Expanded(child: _buildFarmStat(LucideIcons.map, 'Farm Size', '10 Acres', Colors.blue)),
+                      Expanded(child: _buildFarmStat(Icons.map, 'Farm Size', '10 Acres', Colors.blue)),
                       const SizedBox(width: 16),
-                      Expanded(child: _buildFarmStat(LucideIcons.github, 'Total Animals', '12', Colors.green)),
+                      Expanded(child: _buildFarmStat(Icons.pets, 'Total Animals', '12', Colors.green)),
                     ],
                   ),
                   const SizedBox(height: 16),
                   Row(
                     children: [
-                      Expanded(child: _buildFarmStat(LucideIcons.tag, 'Primary Animals', 'Cattle', Colors.purple)),
+                      Expanded(child: _buildFarmStat(Icons.sell, 'Primary Animals', 'Cattle', Colors.purple)),
                       const SizedBox(width: 16),
-                      Expanded(child: _buildFarmStat(LucideIcons.award, 'Experience', '5 Years', Colors.orange)),
+                      Expanded(child: _buildFarmStat(Icons.emoji_events, 'Experience', '5 Years', Colors.orange)),
                     ],
                   ),
                 ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../shared/widgets/glass_container.dart';
 import '../../../shared/widgets/main_background.dart';
 
@@ -43,7 +42,7 @@ class DoctorReportsScreen extends StatelessWidget {
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
-                      prefixIcon: Icon(LucideIcons.search, color: Colors.black54),
+                      prefixIcon: Icon(Icons.search, color: Colors.black54),
                       filled: false,
                     ),
                   ),
@@ -55,7 +54,7 @@ class DoctorReportsScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
-                          Icon(LucideIcons.fileText, size: 64, color: Colors.black26),
+                          Icon(Icons.insert_drive_file, size: 64, color: Colors.black26),
                           SizedBox(height: 16),
                           Text(
                             'No reports found matching your search.',
@@ -75,7 +74,7 @@ class DoctorReportsScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           children: const [
-                            Icon(LucideIcons.fileText, color: Colors.blue),
+                            Icon(Icons.insert_drive_file, color: Colors.blue),
                             SizedBox(height: 8),
                             Text('Total Reports', style: TextStyle(color: Colors.black54, fontSize: 12)),
                             Text('0', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
@@ -89,7 +88,7 @@ class DoctorReportsScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           children: const [
-                            Icon(LucideIcons.checkCircle, color: Colors.green),
+                            Icon(Icons.check_circle, color: Colors.green),
                             SizedBox(height: 8),
                             Text('Completed', style: TextStyle(color: Colors.black54, fontSize: 12)),
                             Text('0', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),

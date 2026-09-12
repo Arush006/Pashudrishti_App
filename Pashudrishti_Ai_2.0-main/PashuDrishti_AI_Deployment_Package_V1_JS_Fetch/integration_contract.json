@@ -1,0 +1,31 @@
+{
+  "version": "1.1",
+  "runtime": "JavaScript/Node.js for ResNet + fusion; XGBoost runtime may remain Python",
+  "resnet": {
+    "method": "POST",
+    "base_url": "https://serverless.roboflow.com",
+    "workspace": "abhinav-bharadwaj",
+    "workflow_id": "pashu-drishti-vpashu-drishti-1-resnet50-t1-logic",
+    "input": {
+      "image": {
+        "type": "url",
+        "value": "IMAGE_URL"
+      }
+    },
+    "auth": "Authorization: Bearer ${ROBOFLOW_API_KEY}"
+  },
+  "xgboost": {
+    "model_file": "xgboost_model/pashudrishti_xgboost.json",
+    "label_encoder": "xgboost_model/label_encoder.pkl",
+    "feature_config": "xgboost_model/feature_config.json"
+  },
+  "prediction_format": {
+    "label": "string",
+    "confidence": "number"
+  },
+  "fusion_defaults": {
+    "image_weight": 0.6,
+    "symptom_weight": 0.4
+  },
+  "security": "Keep Roboflow API key server-side. Rotate any key exposed in chat/source."
+}

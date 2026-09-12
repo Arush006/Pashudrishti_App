@@ -1,0 +1,10 @@
+{
+  "name": "pashudrishti-ai-integration",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PashuDrishti ResNet and XGBoost integration adapter",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/widgets/glass_container.dart';
 import '../../../shared/widgets/case_summary_card.dart';
@@ -59,7 +58,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
         elevation: 0,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(LucideIcons.menu, color: Colors.white),
+            icon: const Icon(Icons.menu, color: Colors.white),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
@@ -78,11 +77,11 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                     accountEmail: Text(user.email, style: const TextStyle(color: Colors.white70)),
                     currentAccountPicture: const CircleAvatar(
                       backgroundColor: Colors.white,
-                      child: Icon(LucideIcons.user, color: Color(0xFF2563EB), size: 32),
+                      child: Icon(Icons.person, color: Color(0xFF2563EB), size: 32),
                     ),
                   ),
                   ListTile(
-                    leading: const Icon(LucideIcons.settings, color: Colors.black87),
+                    leading: const Icon(Icons.settings, color: Colors.black87),
                     title: const Text('Settings', style: TextStyle(color: Colors.black87)),
                     onTap: () {
                       context.push('/settings');
@@ -113,7 +112,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(LucideIcons.logOut, color: Colors.red, size: 22),
+                    Icon(Icons.logout, color: Colors.red, size: 22),
                     SizedBox(width: 10),
                     Text(
                       'Log out',
@@ -153,10 +152,10 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
               mainAxisSpacing: 16,
               childAspectRatio: 1.2,
               children: [
-                _buildSummaryCard('My Pets', _isLoading ? '...' : '${totalCases}', LucideIcons.heart, Colors.pink),
-                _buildSummaryCard('Pending Cases', _isLoading ? '...' : '$pendingCases', LucideIcons.fileText, Colors.yellow.shade800),
-                _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '$resolvedCases', LucideIcons.activity, Colors.blue),
-                _buildSummaryCard('Nearby Doctors', _isLoading ? '...' : '$nearbyDoctors', LucideIcons.user, Colors.purple),
+                _buildSummaryCard('My Pets', _isLoading ? '...' : '${totalCases}', Icons.favorite, Colors.pink),
+                _buildSummaryCard('Pending Cases', _isLoading ? '...' : '$pendingCases', Icons.insert_drive_file, Colors.yellow.shade800),
+                _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '$resolvedCases', Icons.monitor_heart, Colors.blue),
+                _buildSummaryCard('Nearby Doctors', _isLoading ? '...' : '$nearbyDoctors', Icons.person, Colors.purple),
               ],
             ),
             const SizedBox(height: 24),

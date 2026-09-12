@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../core/providers/user_provider.dart';
 import '../../../core/services/api_service.dart';
 import '../../../shared/widgets/glass_container.dart';
@@ -64,7 +63,7 @@ class _FarmerCasesScreenState extends ConsumerState<FarmerCasesScreen> {
                   border: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  icon: Icon(LucideIcons.search, color: Colors.black38),
+                  icon: Icon(Icons.search, color: Colors.black38),
                   filled: false,
                 ),
               ),
