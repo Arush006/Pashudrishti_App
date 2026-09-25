@@ -1,3 +1,4 @@
+import '../../../l10n/app_localizations.dart';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -476,10 +477,11 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('New Health Case', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: Text(l10n.newHealthCase, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -631,3 +633,5 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
     );
   }
 }
+
+

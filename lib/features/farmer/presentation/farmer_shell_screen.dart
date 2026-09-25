@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
 import 'farmer_home_screen.dart';
@@ -33,6 +34,8 @@ class _FarmerShellScreenState extends State<FarmerShellScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return Scaffold(
       extendBody: true,
       body: MainBackground(
@@ -50,11 +53,11 @@ class _FarmerShellScreenState extends State<FarmerShellScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(Icons.home, 'Home', 0),
-                _buildNavItem(Icons.list_alt, 'Cases', 1),
-                _buildNavItem(Icons.flash_on, 'AI Assistant', 2),
-                _buildNavItem(Icons.add_circle_outline, 'Doctors', 3),
-                _buildNavItem(Icons.person, 'Profile', 4),
+                _buildNavItem(Icons.home, l10n.home, 0),
+                _buildNavItem(Icons.list_alt, l10n.cases, 1),
+                _buildNavItem(Icons.flash_on, l10n.aiAssistant, 2),
+                _buildNavItem(Icons.add_circle_outline, l10n.doctors, 3),
+                _buildNavItem(Icons.person, l10n.profile, 4),
               ],
             ),
           ),

@@ -179,7 +179,7 @@ abstract class AppLocalizations {
   /// No description provided for @hindi.
   ///
   /// In en, this message translates to:
-  /// **'Hindi (हिंदी)'**
+  /// **'Hindi'**
   String get hindi;
 
   /// No description provided for @hindiSupportComingSoon.
@@ -325,6 +325,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'New Health Case'**
   String get newHealthCase;
+
+  /// No description provided for @aiAssistant.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Assistant'**
+  String get aiAssistant;
+
+  /// No description provided for @appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointments'**
+  String get appointments;
+
+  /// No description provided for @reports.
+  ///
+  /// In en, this message translates to:
+  /// **'Reports'**
+  String get reports;
+
+  /// No description provided for @medicalReports.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Reports'**
+  String get medicalReports;
+
+  /// No description provided for @viewAndManageReports.
+  ///
+  /// In en, this message translates to:
+  /// **'View and manage your patient reports'**
+  String get viewAndManageReports;
+
+  /// No description provided for @totalReports.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Reports'**
+  String get totalReports;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @noReportsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No reports found'**
+  String get noReportsFound;
+
+  /// No description provided for @reportsAppearHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Your generated reports will appear here.'**
+  String get reportsAppearHere;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logout;
+
+  /// No description provided for @totalCases.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Cases'**
+  String get totalCases;
+
+  /// No description provided for @pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get pending;
+
+  /// No description provided for @resolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolved'**
+  String get resolved;
+
+  /// No description provided for @nearbyDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby Doctors'**
+  String get nearbyDoctors;
+
+  /// No description provided for @noCasesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No cases found.'**
+  String get noCasesFound;
+
+  /// No description provided for @noAppointmentsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No upcoming appointments'**
+  String get noAppointmentsFound;
+
+  /// No description provided for @totalAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Appointments'**
+  String get totalAppointments;
+
+  /// No description provided for @todaysAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Appointments'**
+  String get todaysAppointments;
+
+  /// No description provided for @yourAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Appointments'**
+  String get yourAppointments;
+
+  /// No description provided for @scheduleVisits.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule your visits with farmers'**
+  String get scheduleVisits;
+
+  /// No description provided for @yourCases.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Cases'**
+  String get yourCases;
+
+  /// No description provided for @manageAndTrackCases.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage and track all your assigned cases'**
+  String get manageAndTrackCases;
+
+  /// No description provided for @searchPatient.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by patient name...'**
+  String get searchPatient;
+
+  /// No description provided for @inProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get inProgress;
 }
 
 class _AppLocalizationsDelegate

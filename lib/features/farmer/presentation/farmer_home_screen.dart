@@ -1,3 +1,4 @@
+import '../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,6 +46,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final user = ref.watch(userProvider);
     final totalCases = (_dashboard['totalCases'] ?? 0) as num;
     final pendingCases = (_dashboard['pendingCases'] ?? 0) as num;
@@ -82,7 +84,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                   ),
                   ListTile(
                     leading: const Icon(Icons.settings, color: Colors.black87),
-                    title: const Text('Settings', style: TextStyle(color: Colors.black87)),
+                    title: Text(l10n.settings, style: const TextStyle(color: Colors.black87)),
                     onTap: () {
                       context.push('/settings');
                       Navigator.of(context).pop();
@@ -109,21 +111,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                   context.go('/login');
                 },
                 borderRadius: BorderRadius.circular(12),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.logout, color: Colors.red, size: 22),
-                    SizedBox(width: 10),
-                    Text(
-                      'Log out',
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
+                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [const Icon(Icons.logout, color: Colors.red, size: 22), const SizedBox(width: 10), Text(l10n.logout, style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 16))]),
               ),
             ),
           ],
@@ -155,7 +143,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                 _buildSummaryCard('My Pets', _isLoading ? '...' : '$totalCases', Icons.favorite, Colors.pink),
                 _buildSummaryCard('Pending Cases', _isLoading ? '...' : '$pendingCases', Icons.insert_drive_file, Colors.yellow.shade800),
                 _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '$resolvedCases', Icons.monitor_heart, Colors.blue),
-                _buildSummaryCard('Nearby Doctors', _isLoading ? '...' : '$nearbyDoctors', Icons.person, Colors.purple),
+                _buildSummaryCard(l10n.nearbyDoctors, _isLoading ? '...' : '$nearbyDoctors', Icons.person, Colors.purple),
               ],
             ),
             const SizedBox(height: 24),
@@ -183,7 +171,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                 const Text('My Cases', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
                 TextButton(
                   onPressed: () {},
-                  child: const Text('View All'),
+                  child: Text(l10n.viewAll),
                 ),
               ],
             ),
@@ -197,7 +185,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                   caseId: '#${5 - index}',
                   date: index == 0 ? 'Jun 19, 2026' : 'May 22, 2026',
                   animalAndLocation: 'Cattle - Raipur',
-                  status: 'Pending',
+                  status: l10n.pending,
                   diseaseStatus: 'Pending Review',
                 );
               },
@@ -255,3 +243,6 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
     );
   }
 }
+
+
+

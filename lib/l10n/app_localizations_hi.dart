@@ -122,4 +122,77 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get newHealthCase => 'नया स्वास्थ्य मामला';
+
+  @override
+  String get aiAssistant => 'AI सहायक';
+
+  @override
+  String get appointments => 'अपॉइंटमेंट';
+
+  @override
+  String get reports => 'रिपोर्ट';
+
+  @override
+  String get medicalReports => 'मेडिकल रिपोर्ट';
+
+  @override
+  String get viewAndManageReports => 'अपनी मरीज रिपोर्ट देखें और प्रबंधित करें';
+
+  @override
+  String get totalReports => 'कुल रिपोर्ट';
+
+  @override
+  String get completed => 'पूर्ण';
+
+  @override
+  String get noReportsFound => 'कोई रिपोर्ट नहीं मिली';
+
+  @override
+  String get reportsAppearHere => 'आपकी बनाई गई रिपोर्ट यहां दिखाई देंगी।';
+
+  @override
+  String get logout => 'लॉग आउट';
+
+  @override
+  String get totalCases => 'कुल मामले';
+
+  @override
+  String get pending => 'लंबित';
+
+  @override
+  String get resolved => 'हल हो गए';
+
+  @override
+  String get nearbyDoctors => 'आसपास के डॉक्टर';
+
+  @override
+  String get noCasesFound => 'कोई मामले नहीं मिले।';
+
+  @override
+  String get noAppointmentsFound => 'कोई आगामी अपॉइंटमेंट नहीं';
+
+  @override
+  String get totalAppointments => 'कुल अपॉइंटमेंट';
+
+  @override
+  String get todaysAppointments => 'आज के अपॉइंटमेंट';
+
+  @override
+  String get yourAppointments => 'आपके अपॉइंटमेंट';
+
+  @override
+  String get scheduleVisits => 'किसानों के साथ अपनी विज़िट शेड्यूल करें';
+
+  @override
+  String get yourCases => 'आपके मामले';
+
+  @override
+  String get manageAndTrackCases =>
+      'अपने सभी असाइन किए गए मामलों को प्रबंधित और ट्रैक करें';
+
+  @override
+  String get searchPatient => 'मरीज के नाम से खोजें...';
+
+  @override
+  String get inProgress => 'प्रगति पर';
 }

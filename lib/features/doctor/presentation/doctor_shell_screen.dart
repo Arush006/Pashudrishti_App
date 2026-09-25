@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
 import 'doctor_home_screen.dart';
@@ -36,6 +37,8 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
@@ -69,7 +72,7 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
                   ),
                   ListTile(
                     leading: const Icon(Icons.settings, color: Colors.black87),
-                    title: const Text('Settings', style: TextStyle(color: Colors.black87)),
+                    title: Text(l10n.settings, style: const TextStyle(color: Colors.black87)),
                     onTap: () {
                       context.push('/settings');
                       Navigator.of(context).pop();
@@ -90,14 +93,14 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
                   context.go('/login');
                 },
                 borderRadius: BorderRadius.circular(12),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.logout, color: Colors.red, size: 22),
-                    SizedBox(width: 10),
+                    const Icon(Icons.logout, color: Colors.red, size: 22),
+                    const SizedBox(width: 10),
                     Text(
-                      'Log out',
-                      style: TextStyle(
+                      l10n.logout,
+                      style: const TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -125,11 +128,11 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(Icons.home, 'Home', 0),
-                _buildNavItem(Icons.list_alt, 'Cases', 1),
-                _buildNavItem(Icons.calendar_today, 'Appointments', 2),
-                _buildNavItem(Icons.insert_drive_file, 'Reports', 3),
-                _buildNavItem(Icons.person, 'Profile', 4),
+                _buildNavItem(Icons.home, l10n.home, 0),
+                _buildNavItem(Icons.list_alt, l10n.cases, 1),
+                _buildNavItem(Icons.calendar_today, l10n.appointments, 2),
+                _buildNavItem(Icons.insert_drive_file, l10n.reports, 3),
+                _buildNavItem(Icons.person, l10n.profile, 4),
               ],
             ),
           ),
@@ -163,3 +166,4 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
     );
   }
 }
+

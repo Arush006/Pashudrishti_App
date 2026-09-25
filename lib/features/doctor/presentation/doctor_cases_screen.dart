@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../core/providers/user_provider.dart';
 import '../../../core/services/api_service.dart';
 import '../../../shared/widgets/glass_container.dart';
@@ -42,20 +43,21 @@ class _DoctorCasesScreenState extends ConsumerState<DoctorCasesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Your Cases',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
+            Text(
+              l10n.yourCases,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
             ),
             const SizedBox(height: 4),
-            const Text(
-              'Manage and track all your assigned cases',
-              style: TextStyle(color: Colors.black54),
+            Text(
+              l10n.manageAndTrackCases,
+              style: const TextStyle(color: Colors.black54),
             ),
             const SizedBox(height: 24),
             Row(
@@ -64,14 +66,14 @@ class _DoctorCasesScreenState extends ConsumerState<DoctorCasesScreen> {
                   child: GlassContainer(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     borderRadius: BorderRadius.circular(16),
-                    child: const TextField(
+                    child: TextField(
                       decoration: InputDecoration(
-                        hintText: 'Search by patient name or case ID...',
-                        hintStyle: TextStyle(color: Colors.black38),
+                        hintText: l10n.searchPatient,
+                        hintStyle: const TextStyle(color: Colors.black38),
                         border: InputBorder.none,
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
-                        icon: Icon(Icons.search, color: Colors.black38),
+                        icon: const Icon(Icons.search, color: Colors.black38),
                         filled: false,
                       ),
                     ),
@@ -89,20 +91,27 @@ class _DoctorCasesScreenState extends ConsumerState<DoctorCasesScreen> {
             Expanded(
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : ListView.builder(
-                      itemCount: _cases.length,
-                      itemBuilder: (context, index) {
-                        final item = _cases[index] as Map<String, dynamic>;
-                        return DoctorCaseCard(
-                          caseId: '#${item['id'] ?? 0}',
-                          date: (item['created_at'] ?? '').toString().split('T').first,
-                          patientName: item['user_name'] ?? 'Unknown Patient',
-                          animal: item['animal_type'] ?? 'Animal',
-                          status: item['status'] ?? 'Pending',
-                          severity: item['disease_name'] ?? 'N/A',
-                        );
-                      },
-                    ),
+                  : _cases.isEmpty 
+                      ? Center(
+                          child: Text(
+                            l10n.noCasesFound,
+                            style: const TextStyle(fontSize: 18, color: Colors.black54, fontWeight: FontWeight.w600),
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: _cases.length,
+                          itemBuilder: (context, index) {
+                            final item = _cases[index] as Map<String, dynamic>;
+                            return DoctorCaseCard(
+                              caseId: '#${item['id'] ?? 0}',
+                              date: (item['created_at'] ?? '').toString().split('T').first,
+                              patientName: item['user_name'] ?? 'Unknown Patient',
+                              animal: item['animal_type'] ?? 'Animal',
+                              status: item['status'] ?? l10n.pending,
+                              severity: item['disease_name'] ?? 'N/A',
+                            );
+                          },
+                        ),
             ),
             const SizedBox(height: 16),
             Row(
@@ -113,7 +122,7 @@ class _DoctorCasesScreenState extends ConsumerState<DoctorCasesScreen> {
                     child: Column(
                       children: [
                         Text('${_cases.length}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue)),
-                        const Text('Total Cases', style: TextStyle(color: Colors.black54, fontSize: 12)),
+                        Text(l10n.totalCases, style: const TextStyle(color: Colors.black54, fontSize: 12)),
                       ],
                     ),
                   ),
@@ -125,7 +134,7 @@ class _DoctorCasesScreenState extends ConsumerState<DoctorCasesScreen> {
                     child: Column(
                       children: [
                         Text('${_cases.where((c) => (c as Map<String, dynamic>)['status'] == 'in_progress').length}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.orange)),
-                        const Text('In Progress', style: TextStyle(color: Colors.black54, fontSize: 12)),
+                        Text(l10n.inProgress, style: const TextStyle(color: Colors.black54, fontSize: 12)),
                       ],
                     ),
                   ),

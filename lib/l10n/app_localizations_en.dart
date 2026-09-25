@@ -48,7 +48,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get english => 'English';
 
   @override
-  String get hindi => 'Hindi (हिंदी)';
+  String get hindi => 'Hindi';
 
   @override
   String get hindiSupportComingSoon => 'Hindi language support coming soon';
@@ -121,4 +121,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get newHealthCase => 'New Health Case';
+
+  @override
+  String get aiAssistant => 'AI Assistant';
+
+  @override
+  String get appointments => 'Appointments';
+
+  @override
+  String get reports => 'Reports';
+
+  @override
+  String get medicalReports => 'Medical Reports';
+
+  @override
+  String get viewAndManageReports => 'View and manage your patient reports';
+
+  @override
+  String get totalReports => 'Total Reports';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get noReportsFound => 'No reports found';
+
+  @override
+  String get reportsAppearHere => 'Your generated reports will appear here.';
+
+  @override
+  String get logout => 'Log out';
+
+  @override
+  String get totalCases => 'Total Cases';
+
+  @override
+  String get pending => 'Pending';
+
+  @override
+  String get resolved => 'Resolved';
+
+  @override
+  String get nearbyDoctors => 'Nearby Doctors';
+
+  @override
+  String get noCasesFound => 'No cases found.';
+
+  @override
+  String get noAppointmentsFound => 'No upcoming appointments';
+
+  @override
+  String get totalAppointments => 'Total Appointments';
+
+  @override
+  String get todaysAppointments => 'Today\'s Appointments';
+
+  @override
+  String get yourAppointments => 'Your Appointments';
+
+  @override
+  String get scheduleVisits => 'Schedule your visits with farmers';
+
+  @override
+  String get yourCases => 'Your Cases';
+
+  @override
+  String get manageAndTrackCases => 'Manage and track all your assigned cases';
+
+  @override
+  String get searchPatient => 'Search by patient name...';
+
+  @override
+  String get inProgress => 'In Progress';
 }

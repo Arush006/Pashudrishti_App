@@ -1,3 +1,4 @@
+﻿import '../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,6 +43,7 @@ class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 120),
@@ -102,11 +104,11 @@ class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
                     context.push('/doctor-cases');
                   }),
                   const SizedBox(width: 12),
-                  _buildQuickAction('Appointments', Colors.purple, Colors.white, () {
+                  _buildQuickAction(l10n.appointments, Colors.purple, Colors.white, () {
                     context.push('/doctor-appointments');
                   }),
                   const SizedBox(width: 12),
-                  _buildQuickAction('Reports', Colors.green, Colors.white, () {
+                  _buildQuickAction(l10n.reports, Colors.green, Colors.white, () {
                     context.push('/doctor-reports');
                   }),
                 ],
@@ -171,3 +173,4 @@ class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
     );
   }
 }
+
