@@ -152,7 +152,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
               mainAxisSpacing: 16,
               childAspectRatio: 1.2,
               children: [
-                _buildSummaryCard('My Pets', _isLoading ? '...' : '${totalCases}', Icons.favorite, Colors.pink),
+                _buildSummaryCard('My Pets', _isLoading ? '...' : '$totalCases', Icons.favorite, Colors.pink),
                 _buildSummaryCard('Pending Cases', _isLoading ? '...' : '$pendingCases', Icons.insert_drive_file, Colors.yellow.shade800),
                 _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '$resolvedCases', Icons.monitor_heart, Colors.blue),
                 _buildSummaryCard('Nearby Doctors', _isLoading ? '...' : '$nearbyDoctors', Icons.person, Colors.purple),

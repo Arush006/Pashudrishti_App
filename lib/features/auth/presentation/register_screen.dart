@@ -73,6 +73,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         token: token,
       );
 
+      if (!mounted) return;
       FocusScope.of(context).unfocus();
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(

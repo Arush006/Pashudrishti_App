@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/providers/user_provider.dart';
 import '../../../core/services/api_service.dart';
-import '../../../shared/widgets/glass_container.dart';
 
 class FarmerDoctorsScreen extends ConsumerStatefulWidget {
   const FarmerDoctorsScreen({super.key});
@@ -78,8 +77,7 @@ class _FarmerDoctorsScreenState extends ConsumerState<FarmerDoctorsScreen> {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             const Text(
               'Find Nearby Doctors',
@@ -243,33 +241,35 @@ class _FarmerDoctorsScreenState extends ConsumerState<FarmerDoctorsScreen> {
               ],
             ),
             const SizedBox(height: 20),
-            Expanded(
-              child: _isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : filteredDoctors.isEmpty
-                      ? Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.7),
-                            borderRadius: BorderRadius.circular(18),
-                            border: Border.all(color: Colors.black12),
+            _isLoading
+                ? const Padding(padding: EdgeInsets.all(32), child: Center(child: CircularProgressIndicator()))
+                : filteredDoctors.isEmpty
+                    ? Container(
+                        padding: const EdgeInsets.symmetric(vertical: 40),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.7),
+                          borderRadius: BorderRadius.circular(18),
+                          border: Border.all(color: Colors.black12),
+                        ),
+                        child: const Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.search_off, size: 52, color: Colors.black38),
+                              SizedBox(height: 16),
+                              Text(
+                                'No doctors found matching your criteria',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20, color: Colors.black54),
+                              ),
+                            ],
                           ),
-                          child: const Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.search_off, size: 52, color: Colors.black38),
-                                SizedBox(height: 16),
-                                Text(
-                                  'No doctors found matching your criteria',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20, color: Colors.black54),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      : ListView.builder(
-                          padding: EdgeInsets.zero,
+                        ),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.zero,
                           itemCount: filteredDoctors.length,
                           itemBuilder: (context, index) {
                             final doctor = filteredDoctors[index] as Map<String, dynamic>;
@@ -326,7 +326,6 @@ class _FarmerDoctorsScreenState extends ConsumerState<FarmerDoctorsScreen> {
                             );
                           },
                         ),
-            ),
           ],
         ),
       ),

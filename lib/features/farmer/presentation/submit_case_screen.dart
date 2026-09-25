@@ -1,9 +1,7 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../shared/widgets/main_background.dart';
@@ -36,20 +34,6 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
     _locationController.dispose();
     _notesController.dispose();
     super.dispose();
-  }
-
-  void _clearForm() {
-    _locationController.clear();
-    _notesController.clear();
-    setState(() {
-      _animalType = 'Cattle';
-      _fever = 'Medium';
-      _appetite = 'Normal';
-      _lesions = 'None';
-      _selectedImage = null;
-      _selectedImageBytes = null;
-      _aiResult = null;
-    });
   }
 
   Map<String, dynamic> _buildAiResult() {
@@ -97,100 +81,6 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
     };
   }
 
-  void _showChatSheet() {
-    final messageController = TextEditingController();
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: GlassContainer(
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-          padding: const EdgeInsets.all(20),
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.chat_bubble_outline, color: Color(0xFF2563EB)),
-                    const SizedBox(width: 10),
-                    const Text(
-                      'Chat with Vet',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      icon: const Icon(Icons.close, color: Colors.black54),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withValues(alpha: 0.07),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Text(
-                    'Ask a quick question about the case symptoms, diagnosis, or next steps.',
-                    style: TextStyle(color: Colors.black87, fontSize: 14),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: messageController,
-                  maxLines: 4,
-                  decoration: InputDecoration(
-                    hintText: 'Type your message...',
-                    filled: true,
-                    fillColor: Colors.white.withValues(alpha: 0.4),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      final text = messageController.text.trim();
-                      if (text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Please type a message first')),
-                        );
-                        return;
-                      }
-                      Navigator.of(context).pop();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Vet chat request sent: $text')),
-                      );
-                    },
-                    icon: const Icon(Icons.send, size: 18),
-                    label: const Text('Send Message'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF2563EB),
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Future<void> _pickImage(ImageSource source) async {
     try {
       final picker = ImagePicker();
@@ -207,6 +97,7 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
         _selectedImageBytes = imageBytes;
       });
 
+      if (!mounted) return;
       if (Navigator.of(context).canPop()) {
         Navigator.of(context).pop();
       }
@@ -266,6 +157,14 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
         }
       }
 
+      Map<String, dynamic> aiAnalysis = {'disease_name': 'Pending Review'};
+      if (_selectedImageBytes != null) {
+        aiAnalysis = await ApiService.analyzeImage(token, _selectedImageBytes!, _selectedImage!.name);
+      } else if (!kIsWeb && _selectedImage != null) {
+        final bytes = await File(_selectedImage!.path).readAsBytes();
+        aiAnalysis = await ApiService.analyzeImage(token, bytes, _selectedImage!.name);
+      }
+
       final payload = {
         'animalType': _animalType,
         'breed': '',
@@ -277,7 +176,7 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
         'lesions': _lesions,
         'notes': _notesController.text.trim(),
         'imageUrl': imageUrl,
-        'aiAnalysis': {'disease_name': 'Pending Review'},
+        'aiAnalysis': aiAnalysis,
       };
 
       await ApiService.submitCase(token, payload);
@@ -285,7 +184,33 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
       if (!mounted) return;
       setState(() {
         _isLoading = false;
-        _aiResult = _buildAiResult();
+        if (aiAnalysis['success'] == true) {
+          _aiResult = {
+            'diseaseName': aiAnalysis['disease'] ?? 'Unknown',
+            'confidence': aiAnalysis['confidence'] ?? 0,
+            'category': 'AI image based disease screening',
+            'severity': 'Medium',
+            'symptoms': [
+              {'label': 'Fever', 'value': _fever},
+              {'label': 'Appetite', 'value': _appetite},
+              {'label': 'Lesions', 'value': _lesions},
+            ],
+            'keyDiagnosis': [
+              aiAnalysis['analysis'] ?? 'Possible disease based on image.',
+              'A veterinary examination is required for confirmation.',
+            ],
+            'internalSigns': ['Inflammation or lesions may be present in the affected area.'],
+            'precautions': ['Keep the animal isolated from other animals.'],
+            'recommendations': [
+              'Keep the animal under observation',
+              'Provide clean food and water',
+              'Contact a veterinarian immediately if symptoms worsen',
+            ],
+            'treatment': 'Consult a vet.',
+          };
+        } else {
+           _aiResult = _buildAiResult();
+        }
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -374,7 +299,12 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
   Widget _buildAiResultCard() {
     final result = _aiResult ?? _buildAiResult();
     final diseaseName = result['diseaseName'] as String;
-    final confidence = result['confidence'] as int;
+    
+    final rawConfidence = result['confidence'];
+    final confidenceNum = rawConfidence is num ? rawConfidence : 0;
+    final confidenceStr = confidenceNum.toStringAsFixed(1);
+    final confidenceDouble = confidenceNum.toDouble();
+
     final symptoms = result['symptoms'] as List<dynamic>;
     final keyDiagnosis = result['keyDiagnosis'] as List<dynamic>;
     final internalSigns = result['internalSigns'] as List<dynamic>;
@@ -417,7 +347,7 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
             children: [
               const Text('Confidence Score', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black87)),
               const Spacer(),
-              Text('$confidence%', style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black87)),
+              Text('$confidenceStr%', style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black87)),
             ],
           ),
           const SizedBox(height: 8),
@@ -425,7 +355,7 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
             borderRadius: BorderRadius.circular(999),
             child: LinearProgressIndicator(
               minHeight: 8,
-              value: confidence / 100,
+              value: confidenceDouble / 100,
               backgroundColor: Colors.grey.withValues(alpha: 0.2),
               color: const Color(0xFF2563EB),
             ),
@@ -561,91 +491,6 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Emergency Banner
-                GlassContainer(
-                  padding: const EdgeInsets.all(16),
-                  borderRadius: BorderRadius.circular(16),
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.red.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.red.withValues(alpha: 0.5)),
-                    ),
-                    child: Column(
-                      children: [
-                        const Row(
-                          children: [
-                            Icon(Icons.warning_amber_rounded, color: Colors.red),
-                            SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                'Emergency? For life-threatening conditions, call immediately.',
-                                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
-                          onPressed: () {},
-                          child: const Text('Emergency Hotline'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24),
-                
-                // Image Capture Section
-                GestureDetector(
-                  onTap: _showImagePicker,
-                  child: Container(
-                    height: 180,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.35),
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(color: const Color(0xFF2563EB).withValues(alpha: 0.45), width: 1.2),
-                    ),
-                    child: _selectedImage == null
-                        ? const Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.camera_alt, size: 52, color: Color(0xFF2563EB)),
-                              SizedBox(height: 16),
-                              Text(
-                                'Tap to upload or take a photo',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ],
-                          )
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(18),
-                            child: kIsWeb && _selectedImageBytes != null
-                                ? Image.memory(
-                                    _selectedImageBytes!,
-                                    fit: BoxFit.cover,
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                  )
-                                : Image.file(
-                                    File(_selectedImage!.path),
-                                    fit: BoxFit.cover,
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                  ),
-                          ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-
                 // Clinical Details Form
                 const Text('Clinical Details', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
                 const SizedBox(height: 16),
@@ -688,43 +533,95 @@ class _SubmitCaseScreenState extends ConsumerState<SubmitCaseScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
-                _buildGlassTextField(controller: _notesController, labelText: 'Additional Notes', maxLines: 3),
                 const SizedBox(height: 20),
-
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton.icon(
-                    onPressed: _showChatSheet,
-                    icon: const Icon(Icons.chat_bubble_outline, size: 18),
-                    label: const Text('Chat with Vet'),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFF2563EB),
-                      side: const BorderSide(color: Color(0xFF2563EB)),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
 
                 if (_aiResult != null) _buildAiResultCard(),
 
-                const SizedBox(height: 12),
+                const SizedBox(height: 24),
 
-                // Submit Button
-                ElevatedButton(
-                  onPressed: _isLoading ? null : _submit,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1E63FF),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                    elevation: 0,
+                // Selected Image Preview
+                if (_selectedImage != null)
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 80,
+                          margin: const EdgeInsets.only(bottom: 8, right: 8, top: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: const Color(0xFF2563EB).withValues(alpha: 0.3)),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: kIsWeb && _selectedImageBytes != null
+                                ? Image.memory(_selectedImageBytes!, fit: BoxFit.cover)
+                                : Image.file(File(_selectedImage!.path), fit: BoxFit.cover),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _selectedImage = null;
+                              _selectedImageBytes = null;
+                            });
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                            child: const Icon(Icons.cancel, color: Colors.red, size: 20),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  child: _isLoading
-                      ? const SizedBox(height: 24, width: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                      : const Text('Run AI Diagnostic', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+
+                // AI Chat Bar
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.8),
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(color: const Color(0xFF2563EB).withValues(alpha: 0.3)),
+                  ),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.add, color: Color(0xFF2563EB)),
+                        onPressed: _showImagePicker,
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: TextField(
+                          controller: _notesController,
+                          decoration: const InputDecoration(
+                            hintText: 'Chat with AI...',
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(color: Colors.black54),
+                          ),
+                          style: const TextStyle(color: Colors.black87),
+                        ),
+                      ),
+                      _isLoading
+                          ? const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator(strokeWidth: 2),
+                              ),
+                            )
+                          : IconButton(
+                              icon: const Icon(Icons.send, color: Color(0xFF2563EB)),
+                              onPressed: _submit,
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                            ),
+                    ],
+                  ),
                 ),
               ],
             ),
