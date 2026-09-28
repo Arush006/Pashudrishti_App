@@ -1,6 +1,6 @@
+import '../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/widgets/glass_container.dart';
 import '../../../shared/widgets/case_summary_card.dart';
@@ -46,6 +46,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final user = ref.watch(userProvider);
     final totalCases = (_dashboard['totalCases'] ?? 0) as num;
     final pendingCases = (_dashboard['pendingCases'] ?? 0) as num;
@@ -59,7 +60,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
         elevation: 0,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(LucideIcons.menu, color: Colors.white),
+            icon: const Icon(Icons.menu, color: Colors.white),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
@@ -78,12 +79,12 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                     accountEmail: Text(user.email, style: const TextStyle(color: Colors.white70)),
                     currentAccountPicture: const CircleAvatar(
                       backgroundColor: Colors.white,
-                      child: Icon(LucideIcons.user, color: Color(0xFF2563EB), size: 32),
+                      child: Icon(Icons.person, color: Color(0xFF2563EB), size: 32),
                     ),
                   ),
                   ListTile(
-                    leading: const Icon(LucideIcons.settings, color: Colors.black87),
-                    title: const Text('Settings', style: TextStyle(color: Colors.black87)),
+                    leading: const Icon(Icons.settings, color: Colors.black87),
+                    title: Text(l10n.settings, style: const TextStyle(color: Colors.black87)),
                     onTap: () {
                       context.push('/settings');
                       Navigator.of(context).pop();
@@ -110,21 +111,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                   context.go('/login');
                 },
                 borderRadius: BorderRadius.circular(12),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(LucideIcons.logOut, color: Colors.red, size: 22),
-                    SizedBox(width: 10),
-                    Text(
-                      'Log out',
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
+                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [const Icon(Icons.logout, color: Colors.red, size: 22), const SizedBox(width: 10), Text(l10n.logout, style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 16))]),
               ),
             ),
           ],
@@ -153,10 +140,10 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
               mainAxisSpacing: 16,
               childAspectRatio: 1.2,
               children: [
-                _buildSummaryCard('My Pets', _isLoading ? '...' : '${totalCases}', LucideIcons.heart, Colors.pink),
-                _buildSummaryCard('Pending Cases', _isLoading ? '...' : '$pendingCases', LucideIcons.fileText, Colors.yellow.shade800),
-                _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '$resolvedCases', LucideIcons.activity, Colors.blue),
-                _buildSummaryCard('Nearby Doctors', _isLoading ? '...' : '$nearbyDoctors', LucideIcons.user, Colors.purple),
+                _buildSummaryCard('My Pets', _isLoading ? '...' : '$totalCases', Icons.favorite, Colors.pink),
+                _buildSummaryCard('Pending Cases', _isLoading ? '...' : '$pendingCases', Icons.insert_drive_file, Colors.yellow.shade800),
+                _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '$resolvedCases', Icons.monitor_heart, Colors.blue),
+                _buildSummaryCard(l10n.nearbyDoctors, _isLoading ? '...' : '$nearbyDoctors', Icons.person, Colors.purple),
               ],
             ),
             const SizedBox(height: 24),
@@ -184,7 +171,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                 const Text('My Cases', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
                 TextButton(
                   onPressed: () {},
-                  child: const Text('View All'),
+                  child: Text(l10n.viewAll),
                 ),
               ],
             ),
@@ -198,7 +185,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
                   caseId: '#${5 - index}',
                   date: index == 0 ? 'Jun 19, 2026' : 'May 22, 2026',
                   animalAndLocation: 'Cattle - Raipur',
-                  status: 'Pending',
+                  status: l10n.pending,
                   diseaseStatus: 'Pending Review',
                 );
               },
@@ -256,3 +243,6 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
     );
   }
 }
+
+
+

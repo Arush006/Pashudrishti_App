@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
 import 'doctor_home_screen.dart';
@@ -37,6 +37,8 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
@@ -46,7 +48,7 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(LucideIcons.menu, color: Colors.white),
+            icon: const Icon(Icons.menu, color: Colors.white),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
@@ -65,12 +67,12 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
                     accountEmail: Text('doctor@example.com', style: TextStyle(color: Colors.white70)),
                     currentAccountPicture: CircleAvatar(
                       backgroundColor: Colors.white,
-                      child: Icon(LucideIcons.user, color: Color(0xFF2563EB), size: 32),
+                      child: Icon(Icons.person, color: Color(0xFF2563EB), size: 32),
                     ),
                   ),
                   ListTile(
-                    leading: const Icon(LucideIcons.settings, color: Colors.black87),
-                    title: const Text('Settings', style: TextStyle(color: Colors.black87)),
+                    leading: const Icon(Icons.settings, color: Colors.black87),
+                    title: Text(l10n.settings, style: const TextStyle(color: Colors.black87)),
                     onTap: () {
                       context.push('/settings');
                       Navigator.of(context).pop();
@@ -91,14 +93,14 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
                   context.go('/login');
                 },
                 borderRadius: BorderRadius.circular(12),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(LucideIcons.logOut, color: Colors.red, size: 22),
-                    SizedBox(width: 10),
+                    const Icon(Icons.logout, color: Colors.red, size: 22),
+                    const SizedBox(width: 10),
                     Text(
-                      'Log out',
-                      style: TextStyle(
+                      l10n.logout,
+                      style: const TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -126,11 +128,11 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(LucideIcons.home, 'Home', 0),
-                _buildNavItem(LucideIcons.clipboardList, 'Cases', 1),
-                _buildNavItem(LucideIcons.calendar, 'Appointments', 2),
-                _buildNavItem(LucideIcons.fileText, 'Reports', 3),
-                _buildNavItem(LucideIcons.user, 'Profile', 4),
+                _buildNavItem(Icons.home, l10n.home, 0),
+                _buildNavItem(Icons.list_alt, l10n.cases, 1),
+                _buildNavItem(Icons.calendar_today, l10n.appointments, 2),
+                _buildNavItem(Icons.insert_drive_file, l10n.reports, 3),
+                _buildNavItem(Icons.person, l10n.profile, 4),
               ],
             ),
           ),
@@ -164,3 +166,4 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
     );
   }
 }
+

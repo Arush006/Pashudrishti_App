@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS cases (
   ai_confidence INT DEFAULT 0,
   diagnosis TEXT,
   prescribed_medicine TEXT,
-  image_url VARCHAR(500),
+  image_url TEXT,
   notes TEXT,
   status ENUM('pending', 'in_progress', 'resolved') DEFAULT 'pending',
   severity ENUM('low', 'medium', 'high') DEFAULT 'medium',

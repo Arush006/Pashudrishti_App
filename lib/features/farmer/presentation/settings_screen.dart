@@ -1,57 +1,80 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pashudrishti_app/l10n/app_localizations.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
+import '../../../core/providers/locale_provider.dart';
 
-class SettingsScreen extends StatelessWidget {
+class AppSettings {
+  static String mapApiKey = '';
+}
+
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: const Text(
-          'Pashudrishti',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-      ),
       body: MainBackground(
         child: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.all(20),
+          child: Column(
             children: [
-              GlassContainer(
-                padding: const EdgeInsets.all(16),
-                child: Column(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                child: Row(
                   children: [
-                    _buildSettingTile(
-                      icon: LucideIcons.bell,
-                      title: 'Notifications',
-                      subtitle: 'Manage alerts and reminders',
-                      onTap: () => _showComingSoon(context),
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+                      onPressed: () => Navigator.of(context).pop(),
                     ),
-                    const Divider(height: 1, color: Colors.black12),
-                    _buildSettingTile(
-                      icon: LucideIcons.sunMoon,
-                      title: 'Dark Mode / Light Mode',
-                      subtitle: 'Switch app appearance',
-                      onTap: () => _showComingSoon(context),
+                    Expanded(
+                      child: Text(
+                        AppLocalizations.of(context)!.settings,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
                     ),
-                    const Divider(height: 1, color: Colors.black12),
-                    _buildSettingTile(
-                      icon: LucideIcons.globe,
-                      title: 'Language',
-                      subtitle: 'Change app language',
-                      onTap: () => _showComingSoon(context),
+                    const SizedBox(width: 48), // For balance
+                  ],
+                ),
+              ),
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.all(20),
+                  children: [
+                    GlassContainer(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: [
+                          _buildSettingTile(
+                            icon: Icons.notifications,
+                            title: AppLocalizations.of(context)!.notifications,
+                            subtitle: AppLocalizations.of(context)!.manageAlertsAndReminders,
+                            onTap: () => _showComingSoon(context),
+                          ),
+                          const Divider(height: 1, color: Colors.black12),
+                          _buildSettingTile(
+                            icon: Icons.language,
+                            title: AppLocalizations.of(context)!.language,
+                            subtitle: AppLocalizations.of(context)!.changeAppLanguage,
+                            onTap: () => _showLanguageDialog(context, ref),
+                          ),
+                          const Divider(height: 1, color: Colors.black12),
+                          _buildSettingTile(
+                            icon: Icons.info_outline,
+                            title: AppLocalizations.of(context)!.aboutApp,
+                            subtitle: AppLocalizations.of(context)!.appVersionAndDescription,
+                            onTap: () => _showAboutApp(context),
+                          ),
+                          const Divider(height: 1, color: Colors.black12),
+                          _buildSettingTile(
+                            icon: Icons.contact_support_outlined,
+                            title: AppLocalizations.of(context)!.contactUs,
+                            subtitle: AppLocalizations.of(context)!.getSupportAndHelp,
+                            onTap: () => _showContactUs(context),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -105,9 +128,53 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(LucideIcons.chevronRight, color: Colors.black54, size: 18),
+            const Icon(Icons.chevron_right, color: Colors.black54, size: 18),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showContactUs(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Row(
+          children: [
+            Icon(Icons.contact_support_outlined, color: Color(0xFF2563EB)),
+            SizedBox(width: 10),
+            Expanded(child: Text('Contact Us')),
+          ],
+        ),
+        content: const Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('For any support or queries, please reach out to us at:'),
+            SizedBox(height: 16),
+            Row(
+              children: [
+                Icon(Icons.email, size: 16, color: Colors.black54),
+                SizedBox(width: 8),
+                Text('support@pashudrishti.com', style: TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
+            SizedBox(height: 8),
+            Row(
+              children: [
+                Icon(Icons.phone, size: 16, color: Colors.black54),
+                SizedBox(width: 8),
+                Text('+91 9876543210', style: TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
       ),
     );
   }
@@ -117,6 +184,63 @@ class SettingsScreen extends StatelessWidget {
       const SnackBar(
         content: Text('This setting is coming soon.'),
         backgroundColor: Color(0xFF2563EB),
+      ),
+    );
+  }
+
+  void _showLanguageDialog(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.selectLanguage),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.english),
+              trailing: ref.watch(localeProvider).languageCode == 'en' ? const Icon(Icons.check, color: Color(0xFF2563EB)) : null,
+              onTap: () {
+                ref.read(localeProvider.notifier).state = const Locale('en');
+                Navigator.pop(context);
+              },
+            ),
+            const Divider(height: 1),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.hindi),
+              trailing: ref.watch(localeProvider).languageCode == 'hi' ? const Icon(Icons.check, color: Color(0xFF2563EB)) : null,
+              onTap: () {
+                ref.read(localeProvider.notifier).state = const Locale('hi');
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAboutApp(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Row(
+          children: [
+            Icon(Icons.info_outline, color: Color(0xFF2563EB)),
+            SizedBox(width: 10),
+            Expanded(child: Text('About Pashudrishti')),
+          ],
+        ),
+        content: const Text(
+          'Pashudrishti is an advanced AI-powered platform for rural veterinarians and farmers. '
+          'It provides real-time disease diagnosis, health tracking, and seamless communication '
+          'to ensure the well-being of livestock.\n\nVersion: 1.0.0',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
       ),
     );
   }

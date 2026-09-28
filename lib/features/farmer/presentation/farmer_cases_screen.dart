@@ -1,6 +1,6 @@
+﻿import '../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../core/providers/user_provider.dart';
 import '../../../core/services/api_service.dart';
 import '../../../shared/widgets/glass_container.dart';
@@ -43,6 +43,7 @@ class _FarmerCasesScreenState extends ConsumerState<FarmerCasesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
@@ -64,7 +65,7 @@ class _FarmerCasesScreenState extends ConsumerState<FarmerCasesScreen> {
                   border: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  icon: Icon(LucideIcons.search, color: Colors.black38),
+                  icon: Icon(Icons.search, color: Colors.black38),
                   filled: false,
                 ),
               ),
@@ -79,7 +80,7 @@ class _FarmerCasesScreenState extends ConsumerState<FarmerCasesScreen> {
                         final caseItem = _cases[index] as Map<String, dynamic>;
                         final animalType = caseItem['animal_type'] ?? 'Animal';
                         final location = caseItem['location'] ?? 'Unknown';
-                        final status = caseItem['status'] ?? 'Pending';
+                        final status = caseItem['status'] ?? l10n.pending;
                         final diseaseName = caseItem['disease_name'] ?? 'Pending Review';
                         final createdAt = caseItem['created_at']?.toString() ?? '';
 
@@ -99,3 +100,4 @@ class _FarmerCasesScreenState extends ConsumerState<FarmerCasesScreen> {
     );
   }
 }
+

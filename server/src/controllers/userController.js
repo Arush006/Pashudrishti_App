@@ -50,6 +50,8 @@ export const submitCase = async (req, res) => {
       return res.status(400).json({ error: 'All required fields must be filled' });
     }
 
+    const safeImageUrl = String(imageUrl || '').slice(0, 500);
+
     // Insert animal (without breed - will add column later)
     const animalResult = await executeQuery(
       'INSERT INTO animals (animal_type, age, weight, location) VALUES (?, ?, ?, ?)',
@@ -66,10 +68,10 @@ export const submitCase = async (req, res) => {
       `INSERT INTO cases (user_id, animal_id, symptoms, image_url, notes, status, disease_name, created_at)
        VALUES (?, ?, ?, ?, ?, "pending", ?, NOW())`,
       [
-        userId, 
-        animalId, 
-        symptoms, 
-        imageUrl || 'https://via.placeholder.com/400', 
+        userId,
+        animalId,
+        symptoms,
+        safeImageUrl || 'https://via.placeholder.com/400',
         notes || null,
         aiAnalysis?.disease_name || 'Pending Review'
       ]

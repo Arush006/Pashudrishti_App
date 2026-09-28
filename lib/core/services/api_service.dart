@@ -164,6 +164,17 @@ class ApiService {
     return decoded is List ? decoded : (decoded['data'] is List ? decoded['data'] : const []);
   }
 
+  static Future<Map<String, dynamic>> analyzeImage(String token, Uint8List imageBytes, String filename) async {
+    final request = http.MultipartRequest('POST', Uri.parse('$baseUrl/api/ai/analyze-image'));
+    request.headers['Authorization'] = 'Bearer $token';
+    request.files.add(http.MultipartFile.fromBytes('image', imageBytes, filename: filename));
+
+    final streamedResponse = await request.send();
+    final response = await http.Response.fromStream(streamedResponse);
+
+    return _handleJson(response, 'Failed to analyze image');
+  }
+
   static Future<Map<String, dynamic>> getDiseases(String token) async {
     final response = await http.get(
       Uri.parse('$baseUrl/api/ai/diseases'),

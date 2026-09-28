@@ -1,21 +1,74 @@
 import { executeQuery } from '../config/database.js';
 import { uploadImageBuffer } from '../config/cloudinary.js';
 
-let extractResNetPredictions = null;
-let runResNet = null;
+const runResNet = async (imageUrl) => {
+  const workspace = process.env.ROBOFLOW_WORKSPACE;
+  const workflow = process.env.ROBOFLOW_WORKFLOW;
+  const apiKey = process.env.ROBOFLOW_API_KEY.replace('Bearer ', '');
+  const url = `https://detect.roboflow.com/pashu-drishti/1?api_key=${apiKey}&image=${encodeURIComponent(imageUrl)}`;
 
-try {
-  const aiModule = await import('../../../Pashudrishti_Ai_2.0-main/PashuDrishti_AI_Deployment_Package_V1_JS_Fetch/integration/pashudrishti_ai.js');
-  extractResNetPredictions = aiModule.extractResNetPredictions;
-  runResNet = aiModule.runResNet;
-} catch (error) {
-  console.warn('AI integration module not found. AI features will be disabled until the external model package is added.');
-  console.warn(error.message);
-}
+  const response = await fetch(url, {
+    method: 'POST'
+  });
+
+  if (!response.ok) {
+    const errText = await response.text();
+    console.error('Roboflow error:', errText);
+    throw new Error(`Roboflow API error: ${response.status} ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  console.log('Roboflow response:', JSON.stringify(data));
+  return data;
+};
+
+const extractResNetPredictions = (rawResult) => {
+  let predictions = [];
+  
+  // Recursively search for a 'predictions' array or top-level classes
+  const walk = (obj) => {
+    if (predictions.length > 0) return;
+    if (!obj || typeof obj !== 'object') return;
+    if (Array.isArray(obj.predictions)) {
+      predictions = obj.predictions;
+      return;
+    }
+    // Some workflow outputs might be direct classification arrays inside an output key
+    if (obj.top && obj.classes) {
+       predictions = [{ class: obj.top, confidence: obj.confidence || 1.0 }];
+       return;
+    }
+    for (const key of Object.keys(obj)) {
+      walk(obj[key]);
+    }
+  };
+  walk(rawResult);
+
+  // If we couldn't find a predictions array, look for classes
+  if (predictions.length === 0) {
+     if (rawResult.output && Array.isArray(rawResult.output)) {
+        // Just take the first thing
+        if (rawResult.output[0] && rawResult.output[0].class) {
+           predictions = rawResult.output;
+        }
+     }
+  }
+
+  // Fallback
+  if (predictions.length === 0) {
+    console.warn('Could not extract predictions nicely, returning raw');
+    return [{ label: 'Unknown Disease', confidence: 0.5 }];
+  }
+
+  return predictions.map(p => ({
+    label: p.class || p.name || 'Unknown',
+    confidence: p.confidence || 0.0
+  })).sort((a, b) => b.confidence - a.confidence);
+};
 
 const ensureAiModuleAvailable = () => {
-  if (!runResNet || !extractResNetPredictions) {
-    throw new Error('AI model package is not available. Please add the external PashuDrishti AI integration folder or disable AI routes.');
+  if (!process.env.ROBOFLOW_API_KEY) {
+    throw new Error('Roboflow API key is missing from environment variables.');
   }
 };
 
