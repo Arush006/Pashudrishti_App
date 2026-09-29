@@ -1,4 +1,4 @@
-{
+﻿{
   "@@locale": "en",
   "appTitle": "Pashudrishti",
   "livestockHealthMonitoring": "Livestock Health Monitoring",
@@ -61,5 +61,4 @@
   "yourCases": "Your Cases",
   "manageAndTrackCases": "Manage and track all your assigned cases",
   "searchPatient": "Search by patient name...",
-  "inProgress": "In Progress"
-}
+  "inProgress": "In Progress","welcomeDoctor": "Welcome back, Doctor!","performanceSummary": "Here's your performance summary for this week","assignedCases": "Assigned Cases","pendingCases": "Pending Cases","resolvedCases": "Resolved Cases","cureRate": "Cure Rate","viewCases": "View Cases","recentActivities": "Recent Activities","latestInteractions": "Your latest interactions and updates","noRecentActivities": "No recent activities"}

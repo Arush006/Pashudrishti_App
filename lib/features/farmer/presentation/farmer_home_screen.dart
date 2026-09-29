@@ -56,6 +56,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
+        title: const Text('Pashudrishti', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Builder(
@@ -243,6 +244,7 @@ class _FarmerHomeScreenState extends ConsumerState<FarmerHomeScreen> {
     );
   }
 }
+
 
 
 

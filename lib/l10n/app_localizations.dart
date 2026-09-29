@@ -469,6 +469,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'In Progress'**
   String get inProgress;
+
+  /// No description provided for @welcomeDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back, Doctor!'**
+  String get welcomeDoctor;
+
+  /// No description provided for @performanceSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Here\'s your performance summary for this week'**
+  String get performanceSummary;
+
+  /// No description provided for @assignedCases.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned Cases'**
+  String get assignedCases;
+
+  /// No description provided for @pendingCases.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending Cases'**
+  String get pendingCases;
+
+  /// No description provided for @resolvedCases.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolved Cases'**
+  String get resolvedCases;
+
+  /// No description provided for @cureRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Cure Rate'**
+  String get cureRate;
+
+  /// No description provided for @viewCases.
+  ///
+  /// In en, this message translates to:
+  /// **'View Cases'**
+  String get viewCases;
+
+  /// No description provided for @recentActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Activities'**
+  String get recentActivities;
+
+  /// No description provided for @latestInteractions.
+  ///
+  /// In en, this message translates to:
+  /// **'Your latest interactions and updates'**
+  String get latestInteractions;
+
+  /// No description provided for @noRecentActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'No recent activities'**
+  String get noRecentActivities;
 }
 
 class _AppLocalizationsDelegate

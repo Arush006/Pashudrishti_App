@@ -5,7 +5,6 @@ import 'package:pashudrishti_app/l10n/app_localizations.dart';
 import '../../../shared/widgets/main_background.dart';
 import '../../../shared/widgets/glass_container.dart';
 import '../../../core/providers/user_provider.dart';
-import '../../../core/providers/locale_provider.dart';
 import '../../../core/services/api_service.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -151,32 +150,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                 ),
               ),
-              Positioned(
-                top: 8,
-                right: 16,
-                child: GlassContainer(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  borderRadius: BorderRadius.circular(20),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      value: ref.watch(localeProvider).languageCode == 'hi' ? 'Hindi' : 'English',
-                      dropdownColor: Colors.white,
-                      icon: const Icon(Icons.language, size: 18, color: Color(0xFF2563EB)),
-                      items: [
-                        DropdownMenuItem(value: 'English', child: Text(AppLocalizations.of(context)!.english, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87))),
-                        DropdownMenuItem(value: 'Hindi', child: Text(AppLocalizations.of(context)!.hindi, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87))),
-                      ],
-                      onChanged: (value) {
-                        if (value == 'Hindi') {
-                          ref.read(localeProvider.notifier).state = const Locale('hi');
-                        } else {
-                          ref.read(localeProvider.notifier).state = const Locale('en');
-                        }
-                      },
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -184,5 +157,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
   }
 }
+
+
+
 
 

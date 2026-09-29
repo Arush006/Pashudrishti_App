@@ -195,4 +195,34 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get inProgress => 'प्रगति पर';
+
+  @override
+  String get welcomeDoctor => 'वापसी पर स्वागत है, डॉक्टर!';
+
+  @override
+  String get performanceSummary => 'यहाँ इस सप्ताह का आपका प्रदर्शन सारांश है';
+
+  @override
+  String get assignedCases => 'सौंपे गए मामले';
+
+  @override
+  String get pendingCases => 'लंबित मामले';
+
+  @override
+  String get resolvedCases => 'हल किए गए मामले';
+
+  @override
+  String get cureRate => 'इलाज दर';
+
+  @override
+  String get viewCases => 'मामले देखें';
+
+  @override
+  String get recentActivities => 'हाल की गतिविधियां';
+
+  @override
+  String get latestInteractions => 'आपकी नवीनतम बातचीत और अपडेट';
+
+  @override
+  String get noRecentActivities => 'कोई हाल की गतिविधि नहीं';
 }

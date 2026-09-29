@@ -1,4 +1,4 @@
-﻿import '../../../l10n/app_localizations.dart';
+import '../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -64,17 +64,17 @@ class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
                   ),
                 ],
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Welcome back, Doctor!',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                    l10n.welcomeDoctor,
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
-                    'Here\'s your performance summary for this week',
-                    style: TextStyle(color: Colors.white70),
+                    l10n.performanceSummary,
+                    style: const TextStyle(color: Colors.white70),
                   ),
                 ],
               ),
@@ -88,10 +88,10 @@ class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
               mainAxisSpacing: 16,
               childAspectRatio: 1.2,
               children: [
-                _buildSummaryCard('Assigned Cases', _isLoading ? '...' : '${_dashboard['assignedCases'] ?? 0}', Icons.person, Colors.blue),
-                _buildSummaryCard('Pending Cases', _isLoading ? '...' : '${_dashboard['pendingCases'] ?? 0}', Icons.warning_amber_rounded, Colors.orange),
-                _buildSummaryCard('Resolved Cases', _isLoading ? '...' : '${_dashboard['resolvedCases'] ?? 0}', Icons.calendar_today, Colors.purple),
-                _buildSummaryCard('Cure Rate', _isLoading ? '...' : '${_dashboard['cureRate'] ?? 0}%', Icons.insert_drive_file, Colors.green),
+                _buildSummaryCard(l10n.assignedCases, _isLoading ? '...' : '${_dashboard['assignedCases'] ?? 0}', Icons.person, Colors.blue),
+                _buildSummaryCard(l10n.pendingCases, _isLoading ? '...' : '${_dashboard['pendingCases'] ?? 0}', Icons.warning_amber_rounded, Colors.orange),
+                _buildSummaryCard(l10n.resolvedCases, _isLoading ? '...' : '${_dashboard['resolvedCases'] ?? 0}', Icons.calendar_today, Colors.purple),
+                _buildSummaryCard(l10n.cureRate, _isLoading ? '...' : '${_dashboard['cureRate'] ?? 0}%', Icons.insert_drive_file, Colors.green),
               ],
             ),
             const SizedBox(height: 24),
@@ -100,34 +100,30 @@ class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  _buildQuickAction('View Cases', const Color(0xFF2563EB), Colors.white, () {
+                  _buildQuickAction(l10n.viewCases, const Color(0xFF2563EB), Colors.white, () {
                     context.push('/doctor-cases');
                   }),
                   const SizedBox(width: 12),
-                  _buildQuickAction(l10n.appointments, Colors.purple, Colors.white, () {
+                  _buildQuickAction(l10n.appointments, Colors.green, Colors.white, () {
                     context.push('/doctor-appointments');
                   }),
                   const SizedBox(width: 12),
-                  _buildQuickAction(l10n.reports, Colors.green, Colors.white, () {
+                  _buildGlassQuickAction(l10n.reports, () {
                     context.push('/doctor-reports');
                   }),
                 ],
               ),
             ),
             const SizedBox(height: 24),
-            const Text('Recent Activities', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
+            Text(l10n.recentActivities, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
             const SizedBox(height: 4),
-            const Text('Your latest interactions and updates', style: TextStyle(color: Colors.black54)),
+            Text(l10n.latestInteractions, style: const TextStyle(color: Colors.black54)),
             const SizedBox(height: 16),
             GlassContainer(
               padding: const EdgeInsets.all(24),
               child: Center(
                 child: Column(
-                  children: const [
-                    Icon(Icons.inbox, size: 48, color: Colors.black26),
-                    SizedBox(height: 16),
-                    Text('No recent activities', style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600)),
-                  ],
+                  children: [const Icon(Icons.inbox, size: 48, color: Colors.black26), const SizedBox(height: 16), Text(l10n.noRecentActivities, style: const TextStyle(color: Colors.black54, fontWeight: FontWeight.w600))],
                 ),
               ),
             ),
@@ -171,6 +167,21 @@ class _DoctorHomeScreenState extends ConsumerState<DoctorHomeScreen> {
         ),
       ),
     );
+  } 
+
+  Widget _buildGlassQuickAction(String title, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(24),
+      child: GlassContainer(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        borderRadius: BorderRadius.circular(24),
+        child: Center(
+          child: Text(title, style: const TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
+        ),
+      ),
+    );
   }
 }
+
 

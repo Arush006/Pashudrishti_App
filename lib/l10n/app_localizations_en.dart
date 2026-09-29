@@ -193,4 +193,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get inProgress => 'In Progress';
+
+  @override
+  String get welcomeDoctor => 'Welcome back, Doctor!';
+
+  @override
+  String get performanceSummary =>
+      'Here\'s your performance summary for this week';
+
+  @override
+  String get assignedCases => 'Assigned Cases';
+
+  @override
+  String get pendingCases => 'Pending Cases';
+
+  @override
+  String get resolvedCases => 'Resolved Cases';
+
+  @override
+  String get cureRate => 'Cure Rate';
+
+  @override
+  String get viewCases => 'View Cases';
+
+  @override
+  String get recentActivities => 'Recent Activities';
+
+  @override
+  String get latestInteractions => 'Your latest interactions and updates';
+
+  @override
+  String get noRecentActivities => 'No recent activities';
 }

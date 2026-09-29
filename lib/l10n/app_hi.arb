@@ -61,5 +61,15 @@
   "yourCases": "आपके मामले",
   "manageAndTrackCases": "अपने सभी असाइन किए गए मामलों को प्रबंधित और ट्रैक करें",
   "searchPatient": "मरीज के नाम से खोजें...",
-  "inProgress": "प्रगति पर"
+  "inProgress": "प्रगति पर",
+  "welcomeDoctor": "वापसी पर स्वागत है, डॉक्टर!",
+  "performanceSummary": "यहाँ इस सप्ताह का आपका प्रदर्शन सारांश है",
+  "assignedCases": "सौंपे गए मामले",
+  "pendingCases": "लंबित मामले",
+  "resolvedCases": "हल किए गए मामले",
+  "cureRate": "इलाज दर",
+  "viewCases": "मामले देखें",
+  "recentActivities": "हाल की गतिविधियां",
+  "latestInteractions": "आपकी नवीनतम बातचीत और अपडेट",
+  "noRecentActivities": "कोई हाल की गतिविधि नहीं"
 }

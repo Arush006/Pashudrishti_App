@@ -42,6 +42,7 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
+        title: const Text('Pashudrishti', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: const Color(0xFF2563EB),
         elevation: 0,
         surfaceTintColor: Colors.transparent,
@@ -166,4 +167,5 @@ class _DoctorShellScreenState extends State<DoctorShellScreen> {
     );
   }
 }
+
 
